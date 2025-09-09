@@ -1,0 +1,33 @@
+[
+  {
+    "id": "cartoon-bike",
+    "name": "E-bike 6-8h",
+    "price": 60,
+    "oldPrice": 70,
+    "currency": "AUD",
+    "images": {
+      "front": "/images/CartoonCycleProductdetailsFrontBlur.jpg",
+      "back": "/images/CartoonCycleProductdetailsBackBlur.jpg",
+      "middle": "/images/CartoonCycleProductdetailsAngleBlur.jpg",
+      "battery": "/images/CartoonCycleProductdetailsWholeBlur.jpg"
+    },
+    "specs": [
+      { "icon": "bi bi-battery-full", "label": "Battery Life", "value": "8-10h" },
+      { "icon": "bi bi-lightning-charge-fill", "label": "Motor", "value": "500W" },
+      { "icon": "bi bi-clock-history", "label": "Charging Time", "value": "4-5h" },
+      { "icon": "bi bi-tools", "label": "Maintenance", "value": "Included" }
+    ],
+    "description": "This e-bike offers excellent battery life, a strong motor, and hassle-free maintenance. Perfect for city rides and rentals.",
+    "socialLinks": {
+      "instagram": "https://www.instagram.com/beyondbikes_vic/",
+      "google": "https://g.co/kgs/66Atysa",
+      "call": "tel:+61422032961"
+    },
+    "seo": {
+      "title": "E-bikes-6-8h Bikes | Beyond Bikes Electric Bike",
+      "description": "Explore the Cartoon Bikes E-bike 6-8h by Beyond Bikes. Learn specifications, rental info, insurance, and battery details. Book your ride now!",
+      "keywords": "Beyond Bikes, Cartoon Bikes, electric bike, e-bike, rental, battery life, mid-drive, all-terrain",
+      "canonical": "https://yourdomain.com/product/cartoon"
+    }
+  }
+]

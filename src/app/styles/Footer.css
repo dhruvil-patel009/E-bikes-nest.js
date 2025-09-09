@@ -1,0 +1,32 @@
+.footer-dark {
+  background-color: #121212;
+}
+
+.footer-green {
+  background-color: #1a3b19;
+}
+
+.social-icon {
+  color: rgb(198, 252, 42);
+  font-size: 1.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #ffffff;
+  transform: scale(1.2);
+}
+
+.nav-link {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.75rem;
+}
+
+.set-color-menu{
+  color: rgb(198, 252, 42);
+}
+
+.set-color-menu:hover{
+  color: rgb(198, 252, 42) !important;
+}

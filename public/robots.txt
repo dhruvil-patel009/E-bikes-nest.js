@@ -1,0 +1,15 @@
+# robots.txt for Beyond Bikes Website
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Block private/unnecessary areas
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /api/
+Disallow: /search/
+
+# Link to sitemap (make sure sitemap.xml exists)
+Sitemap: https://www.beyondbikes.com.au/sitemap.xml

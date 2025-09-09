@@ -1,0 +1,73 @@
+.aboutSection {
+  /* background-color: #0f0f0f; */
+  color: black;
+}
+
+.ovalImage {
+  width: 100%;
+  max-width: 500px;
+}
+
+.set-image-size-about-latest-ui{
+  height: 500px;
+  width: 500px;
+}
+
+.orangeHeading {
+  color: #1a3b19;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.position-relative {
+  position: relative;
+}
+
+/* BACKGROUND IMAGE */
+.backImage {
+  position: relative;
+  z-index: 1;
+  border-radius: 15px;
+}
+
+/* FRONT IMAGE (overlapping one) */
+.frontImage {
+  position: absolute;
+  bottom: -20px;   /* adjust overlap */
+  left: -20px;     /* adjust position */
+  z-index: 2;
+  border-radius: 15px;
+  max-width: 60%;
+}
+
+/* Initial hidden state */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(60px); /* falling down effect */
+  transition: all 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+/* When visible */
+.scroll-animate.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .frontImage {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-top: 15px;
+    max-width: 100%;
+  }
+  .set-image-size-about-latest-ui{
+  height: 450px !important;
+  /* width: 300px !important; */
+  
+}
+}
+
