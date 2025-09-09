@@ -406,6 +406,7 @@ import Google from "../../../public/images/google-latest.svg";
 import Call from "../../../public/images/phone-latest.svg";
 import { loadStripe } from "@stripe/stripe-js";
 import GooglePayInner from "../components/GooglePayInner.js";
+import ApplePayInner from "../components/ApplePayInner.js";
 import {
   Elements,
   PaymentRequestButtonElement,
@@ -851,6 +852,9 @@ export default function CartoonDetailsPage() {
             <Elements stripe={stripePromise}>
               <GooglePayInner amountCents={6000} currency="aud" />
             </Elements>
+            <Elements stripe={stripePromise}>
+              <ApplePayInner amountCents={6000} currency="aud" />
+            </Elements>
             <button
               className="ms-3 btn btn-warning"
               style={{ background: "#ff8c00", border: "none" }}
@@ -909,6 +913,9 @@ export default function CartoonDetailsPage() {
                       <div className="mb-3">
                         <Elements stripe={stripePromise}>
                           <GooglePayInner amountCents={6000} currency="aud" />
+                        </Elements>
+                        <Elements stripe={stripePromise}>
+                          <ApplePayInner amountCents={6000} currency="aud" />
                         </Elements>
                       </div>
 

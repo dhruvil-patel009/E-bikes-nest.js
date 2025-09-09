@@ -118,75 +118,7 @@
 // }
 
 // src/app/components/GooglePayInner.js
-// "use client";
-
-// import { useEffect, useState } from "react";
-// import {
-//   Elements,
-//   PaymentRequestButtonElement,
-//   useStripe,
-// } from "@stripe/react-stripe-js";
-// import { loadStripe } from "@stripe/stripe-js";
-
-// const stripePromise = loadStripe(
-//   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-// );
-
-// function GooglePayButton({ amount }) {
-//   const stripe = useStripe();
-//   const [paymentRequest, setPaymentRequest] = useState(null);
-
-//   useEffect(() => {
-//     if (stripe) {
-//       const pr = stripe.paymentRequest({
-//         country: "US",
-//         currency: "usd",
-//         total: {
-//           label: "Pure Kit",
-//           amount, // cents
-//         },
-//         requestPayerName: true,
-//         requestPayerEmail: true,
-//       });
-
-//       pr.canMakePayment().then((result) => {
-//         if (result) {
-//           setPaymentRequest(pr);
-//         }
-//       });
-//     }
-//   }, [stripe, amount]);
-
-//   if (!paymentRequest) {
-//     return <p>Google Pay not available</p>;
-//   }
-
-//   return (
-//     <PaymentRequestButtonElement
-//       options={{
-//         paymentRequest,
-//         style: {
-//           paymentRequestButton: {
-//             type: "buy",
-//             theme: "dark",
-//             height: "48px",
-//           },
-//         },
-//       }}
-//     />
-//   );
-// }
-
-// export default function GooglePayCheckout() {
-//   return (
-//     <Elements stripe={stripePromise}>
-//       <div className="p-4">
-//         <h2 className="text-xl mb-4">Checkout with Google Pay</h2>
-//         <GooglePayButton amount={6500} />
-//       </div>
-//     </Elements>
-//   );
-// }
+"use client";
 
 import { useEffect, useState } from "react";
 import {
@@ -200,15 +132,15 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-function WalletPayButton({ amount }) {
+function GooglePayButton({ amount }) {
   const stripe = useStripe();
   const [paymentRequest, setPaymentRequest] = useState(null);
 
   useEffect(() => {
     if (stripe) {
       const pr = stripe.paymentRequest({
-        country: "AU", // your business country
-        currency: "aud", // or "aud" etc.
+        country: "AU",
+        currency: "AUD",
         total: {
           label: "Pure Kit",
           amount, // cents
@@ -219,7 +151,6 @@ function WalletPayButton({ amount }) {
 
       pr.canMakePayment().then((result) => {
         if (result) {
-          // result = { applePay: true } or { googlePay: true } etc.
           setPaymentRequest(pr);
         }
       });
@@ -227,7 +158,7 @@ function WalletPayButton({ amount }) {
   }, [stripe, amount]);
 
   if (!paymentRequest) {
-    return <p>Wallet Pay not available</p>;
+    return <p>Google Pay not available</p>;
   }
 
   return (
@@ -236,8 +167,8 @@ function WalletPayButton({ amount }) {
         paymentRequest,
         style: {
           paymentRequestButton: {
-            type: "buy", // "default" | "book" | "donate" | "buy"
-            theme: "dark", // "dark" | "light" | "light-outline"
+            type: "buy",
+            theme: "dark",
             height: "48px",
           },
         },
@@ -246,12 +177,12 @@ function WalletPayButton({ amount }) {
   );
 }
 
-export default function WalletCheckout() {
+export default function GooglePayCheckout() {
   return (
     <Elements stripe={stripePromise}>
       <div className="p-4">
-        <h2 className="text-xl mb-4">Checkout with Apple Pay / Google Pay</h2>
-        <WalletPayButton amount={6500} />
+        <h2 className="text-xl mb-4">Checkout with Google Pay</h2>
+        <GooglePayButton amount={6500} />
       </div>
     </Elements>
   );
