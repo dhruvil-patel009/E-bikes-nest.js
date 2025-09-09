@@ -412,6 +412,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import CheckoutButton from "../components/CheckoutButton";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -838,6 +839,8 @@ export default function CartoonDetailsPage() {
             >
               <span className="text-light">Rent Now</span>
             </button>
+
+            <CheckoutButton amount={6500} />
 
             {/* Wrap payment button */}
             <Elements stripe={stripePromise}>
