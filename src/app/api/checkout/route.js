@@ -40,7 +40,6 @@
 //   }
 // }
 
-
 // src/app/api/checkout/route.js
 import Stripe from "stripe";
 
@@ -57,7 +56,7 @@ export async function POST(req) {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "aud",
             product_data: {
               name: "Pure kit",
             },
@@ -76,4 +75,3 @@ export async function POST(req) {
     return Response.json({ error: err.message }, { status: 500 });
   }
 }
-
