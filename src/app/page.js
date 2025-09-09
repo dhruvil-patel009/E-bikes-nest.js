@@ -15,7 +15,7 @@ import ProductPage from './E-bike-8-10h/page'
 // import Contact from './components/Contact'
 import Contact from './contact/page';
 // import Repairs from './components/Repairs'
-import Repairs from './repairs/page';
+// import Repairs from './repairs/page';
 import ChatWidget from './components/ChatWidget'
 import Cart from './cart/page';
 import BasicKnowlegePage from './basicknowledge/page';
