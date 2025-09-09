@@ -44,7 +44,6 @@
 //   return NextResponse.json({ received: true });
 // }
 
-
 // backend/pages/api/webhook/route.js
 // src/app/api/webhook/route.ts
 import { headers } from "next/headers";
@@ -53,11 +52,11 @@ import Stripe from "stripe";
 import nodemailer from "nodemailer";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2025-01-27",
+  apiVersion: "2023-10-16",
 });
 
 export async function POST(req) {
-  const body = await req.text(); // raw body for Stripe verification
+  const body = await req.text();
   const sig = headers().get("stripe-signature");
 
   let event;
@@ -72,29 +71,26 @@ export async function POST(req) {
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
-  if (event.type === "checkout.session.completed") {
-    const session = event.data.object;
+  if (event.type === "payment_intent.succeeded") {
+    const paymentIntent = event.data.object;
 
-    if (session.invoice) {
-      const invoice = await stripe.invoices.retrieve(session.invoice);
-      const invoicePdf = invoice.invoice_pdf;
+    // Example: Send email
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
 
-      // ✅ Send email with invoice
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
-        },
-      });
-
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: session.customer_email ?? process.env.FALLBACK_EMAIL,
-        subject: "Your Invoice",
-        html: `<p>Thank you for your payment!</p><a href="${invoicePdf}">Download Invoice</a>`,
-      });
-    }
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: "customer@example.com",
+      subject: "Payment Success",
+      html: `<p>Thank you! Your payment for ${paymentIntent.amount / 100} ${
+        paymentIntent.currency
+      } was successful.</p>`,
+    });
   }
 
   return NextResponse.json({ received: true });

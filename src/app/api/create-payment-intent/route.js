@@ -29,13 +29,13 @@ import Stripe from "stripe";
 import { NextResponse } from "next/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2022-11-15",
+  apiVersion: "2023-10-16",
 });
 
 export async function POST(req) {
   try {
-    const { amount = 6000, currency = "aud" } = await req.json(); // amount in cents
-    // automatic_payment_methods lets Stripe surface wallets like Google Pay when enabled in Dashboard
+    const { amount = 6500, currency = "usd" } = await req.json();
+
     if (!amount || amount <= 0) {
       return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
     }
@@ -43,16 +43,13 @@ export async function POST(req) {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency,
-      automatic_payment_methods: { enabled: true },
-      metadata: { product: "E-bike 6-8h" },
+      automatic_payment_methods: { enabled: true }, // Enables Google Pay, Apple Pay, Link
+      metadata: { product: "Pure Kit" },
     });
 
     return NextResponse.json({ clientSecret: paymentIntent.client_secret });
   } catch (err) {
     console.error("create-payment-intent error", err);
-    return NextResponse.json(
-      { error: err.message || "Server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
