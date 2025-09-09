@@ -46,37 +46,40 @@
 
 
 // backend/pages/api/webhook/route.js
-import { buffer } from "micro";
+// src/app/api/webhook/route.ts
+import { headers } from "next/headers";
+import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
-
-export const config = { api: { bodyParser: false } };
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2025-01-27",
 });
 
-export default async function handler(req, res) {
-  const sig = req.headers["stripe-signature"];
+export async function POST(req) {
+  const body = await req.text(); // raw body for Stripe verification
+  const sig = headers().get("stripe-signature");
 
   let event;
   try {
-    const buf = await buffer(req);
-    event = stripe.webhooks.constructEvent(buf, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    event = stripe.webhooks.constructEvent(
+      body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
   } catch (err) {
-    return res.status(400).send(`Webhook Error: ${err.message}`);
+    console.error("Webhook Error:", err.message);
+    return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
   if (event.type === "checkout.session.completed") {
-    // const session = event.data.object as Stripe.Checkout.Session;
     const session = event.data.object;
 
-    // ✅ Fetch invoice
     if (session.invoice) {
       const invoice = await stripe.invoices.retrieve(session.invoice);
       const invoicePdf = invoice.invoice_pdf;
 
-      // ✅ Send Email with Invoice
+      // ✅ Send email with invoice
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -87,13 +90,12 @@ export default async function handler(req, res) {
 
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
-        to: session.customer_email,
+        to: session.customer_email ?? process.env.FALLBACK_EMAIL,
         subject: "Your Invoice",
-        text: "Thank you for your payment! Download your invoice below.",
         html: `<p>Thank you for your payment!</p><a href="${invoicePdf}">Download Invoice</a>`,
       });
     }
   }
 
-  res.json({ received: true });
+  return NextResponse.json({ received: true });
 }
