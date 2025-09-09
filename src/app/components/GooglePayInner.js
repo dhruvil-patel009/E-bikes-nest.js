@@ -118,8 +118,77 @@
 // }
 
 // src/app/components/GooglePayInner.js
-"use client";
+// "use client";
 
+// import { useEffect, useState } from "react";
+// import {
+//   Elements,
+//   PaymentRequestButtonElement,
+//   useStripe,
+// } from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
+
+// const stripePromise = loadStripe(
+//   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+// );
+
+// function GooglePayButton({ amount }) {
+//   const stripe = useStripe();
+//   const [paymentRequest, setPaymentRequest] = useState(null);
+
+//   useEffect(() => {
+//     if (stripe) {
+//       const pr = stripe.paymentRequest({
+//         country: "AU",
+//         currency: "AUD",
+//         total: {
+//           label: "Pure Kit",
+//           amount, // cents
+//         },
+//         requestPayerName: true,
+//         requestPayerEmail: true,
+//       });
+
+//       pr.canMakePayment().then((result) => {
+//         if (result) {
+//           setPaymentRequest(pr);
+//         }
+//       });
+//     }
+//   }, [stripe, amount]);
+
+//   if (!paymentRequest) {
+//     return <p>Google Pay not available</p>;
+//   }
+
+//   return (
+//     <PaymentRequestButtonElement
+//       options={{
+//         paymentRequest,
+//         style: {
+//           paymentRequestButton: {
+//             type: "buy",
+//             theme: "dark",
+//             height: "48px",
+//           },
+//         },
+//       }}
+//     />
+//   );
+// }
+
+// export default function GooglePayCheckout() {
+//   return (
+//     <Elements stripe={stripePromise}>
+//       <div className="p-4">
+//         <h2 className="text-xl mb-4">Checkout with Google Pay</h2>
+//         <GooglePayButton amount={6500} />
+//       </div>
+//     </Elements>
+//   );
+// }
+
+"use client";
 import { useEffect, useState } from "react";
 import {
   Elements,
@@ -128,34 +197,37 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
-
-function GooglePayButton({ amount }) {
+export default function GooglePayButton({ amount = 6500, currency = "aud" }) {
   const stripe = useStripe();
   const [paymentRequest, setPaymentRequest] = useState(null);
 
   useEffect(() => {
     if (stripe) {
+      const safeAmount = parseInt(amount, 10); // ensure integer
+
+      if (!safeAmount || safeAmount <= 0) {
+        console.error("Invalid amount passed to GooglePayButton:", amount);
+        return;
+      }
+
       const pr = stripe.paymentRequest({
-        country: "AU",
-        currency: "AUD",
+        country: "AU", // 2-letter ISO code ✅
+        currency,
         total: {
           label: "Pure Kit",
-          amount, // cents
+          amount: safeAmount, // must be positive integer
         },
         requestPayerName: true,
         requestPayerEmail: true,
       });
 
       pr.canMakePayment().then((result) => {
-        if (result) {
+        if (result && result.googlePay) {
           setPaymentRequest(pr);
         }
       });
     }
-  }, [stripe, amount]);
+  }, [stripe, amount, currency]);
 
   if (!paymentRequest) {
     return <p>Google Pay not available</p>;
@@ -174,16 +246,5 @@ function GooglePayButton({ amount }) {
         },
       }}
     />
-  );
-}
-
-export default function GooglePayCheckout() {
-  return (
-    <Elements stripe={stripePromise}>
-      <div className="p-4">
-        <h2 className="text-xl mb-4">Checkout with Google Pay</h2>
-        <GooglePayButton amount={6500} />
-      </div>
-    </Elements>
   );
 }

@@ -5,24 +5,32 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 
-export default function ApplePayButton({ amount, currency = "aud" }) {
+export default function ApplePayButton({ amount = 6500, currency = "aud" }) {
   const stripe = useStripe();
   const [paymentRequest, setPaymentRequest] = useState(null);
 
   useEffect(() => {
     if (stripe) {
+      // Ensure amount is a positive integer in cents
+      const safeAmount = parseInt(amount, 10);
+      if (!safeAmount || safeAmount <= 0) {
+        console.error("Invalid amount passed to ApplePayButton:", amount);
+        return;
+      }
+
       const pr = stripe.paymentRequest({
-        country: "AU", // Australia
+        country: "AU", // ✅ must be "AU" (not "AUS")
         currency,
         total: {
           label: "Pure Kit",
-          amount,
+          amount: safeAmount, // e.g. 6500 = AUD $65.00
         },
         requestPayerName: true,
         requestPayerEmail: true,
       });
 
       pr.canMakePayment().then((result) => {
+        // result can be { applePay: true }, { googlePay: true } or null
         if (result && result.applePay) {
           setPaymentRequest(pr);
         }

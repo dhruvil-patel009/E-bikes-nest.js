@@ -912,10 +912,10 @@ export default function CartoonDetailsPage() {
                       {/* Google Pay Option */}
                       <div className="mb-3">
                         <Elements stripe={stripePromise}>
-                          <GooglePayInner amountCents={6000} currency="aud" />
+                          <GooglePayInner amount={6500} currency="aud" />
                         </Elements>
                         <Elements stripe={stripePromise}>
-                          <ApplePayInner amountCents={6000} currency="aud" />
+                          <ApplePayInner amount={1200} currency="aud" />
                         </Elements>
                       </div>
 
