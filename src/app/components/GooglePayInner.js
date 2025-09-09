@@ -208,7 +208,7 @@ function WalletPayButton({ amount }) {
     if (stripe) {
       const pr = stripe.paymentRequest({
         country: "AU", // your business country
-        currency: "AUD", // or "aud" etc.
+        currency: "aud", // or "aud" etc.
         total: {
           label: "Pure Kit",
           amount, // cents
