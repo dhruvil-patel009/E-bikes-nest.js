@@ -1,0 +1,100 @@
+
+/* Product Card */
+.product-card {
+  position: relative;
+  background-color: #fafafa;
+  padding: 2rem 1rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  text-align: center;
+  height: 100%;
+  overflow: hidden; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  perspective: 1000px; /* Enable 3D effect */
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Product Image */
+.product-card img.product-image {
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  display: block;
+  transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1); /* smooth easing */
+  transform-origin: center center;
+}
+
+/* Attractive Hover Animation */
+.product-card:hover img.product-image {
+  transform: rotateY(180deg) rotateX(5deg) scale(1.05); /* gentle 3D tilt with scale */
+}
+
+/* Sale Badge */
+.sale-badge {
+  color: #1A3B19;
+  z-index: 2;
+  background-color: #C2F829;
+  padding: 0.2rem 1.2rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  position: absolute;
+  top: 9px;
+  right: -11px;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 5px #0000001a;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .sale-badge {
+  transform: rotate(45deg) scale(1.05);
+}
+
+/* Product Title */
+.product-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+/* Product Price */
+.product-price {
+  font-size: 0.9rem;
+  color: #ff6b00;
+  font-weight: 700;
+  margin-bottom: 0;
+  display: inline-block;
+}
+
+.old-price {
+  font-size: 0.85rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+  font-weight: 400;
+  display: inline-block;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+  .product-card img.product-image {
+    max-height: 160px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .product-card img.product-image {
+    max-height: 140px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .product-card img.product-image {
+    max-height: 120px;
+  }
+}

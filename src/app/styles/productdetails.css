@@ -1,0 +1,410 @@
+.text-orange {
+  color: #1a3b19;
+}
+
+.color-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.color-swatch.active {
+  border: 2px solid #000;
+}
+
+.thumb {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+}
+
+.accordion-button {
+  font-weight: 600;
+  background-color: #f8f9fa;
+}
+.accordion-button:focus {
+  box-shadow: none;
+}
+.accordion-item ul li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.table th {
+  width: 30%;
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.set-image-bikes{
+  height: 550px !important;
+  width: 600px !important;
+}
+
+@media (max-width: 767px) {
+  .set-image-bikes{
+  height: 350px !important;
+  width: 350px !important;
+}
+.thumb {
+  width: 100%;
+  height: 100px !important;
+  object-fit: contain; /* Shows full image without cropping */
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: #f4f4f4;
+  padding: 6px;
+  transition: border 0.3s ease;
+}
+.only-mobile-center{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+}
+
+.description-section {
+  max-width: 1100px;
+  margin: 0px auto;
+  padding: 0px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: rgb(247, 147, 30);
+  margin-bottom: 40px;
+}
+
+.insurance-box {
+  background-color: #f3f9ff;
+  border-left: 5px solid rgb(26, 59, 25);
+  padding: 20px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+}
+
+.insurance-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: rgb(247, 147, 30);
+}
+
+.positive {
+  color: #2e8b57;
+  font-weight: 500;
+}
+
+.negative {
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+.rental-title {
+  text-align: center;
+  font-size: 2rem;
+  color: rgb(247, 147, 30);
+  margin-bottom: 30px;
+}
+
+
+
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: #f2fbf5; /* light green box */
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.info-header {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a3b19;
+  margin-bottom: 15px;
+}
+
+.info-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.info-list li {
+  font-size: 15px;
+  color: #2c3e2b;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 22px;
+}
+
+.info-list li::before {
+  content: "✓"; /* checkmark */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #1a3b19;
+  font-weight: bold;
+}
+
+
+.thumbnail-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: contain; /* Shows full image without cropping */
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: #f4f4f4;
+  padding: 6px;
+  transition: border 0.3s ease;
+}
+
+.thumb.active {
+  border-color: rgb(26, 59, 25);
+}
+
+.promotion-section {
+  background-image: url('../../../public/images/multiple-cycle-latest.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.spec-box {
+  background: linear-gradient(to bottom, #012b0f, #115a27);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.spec-box:hover {
+  transform: translateY(-3px);
+}
+
+.spec-box i {
+  font-size: 28px;
+  color: #198754; /* green */
+  flex-shrink: 0;
+}
+
+.spec-box strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  display: block;
+  line-height: 1.2;
+}
+
+.spec-box p {
+  font-size: 14px;
+  margin: 0;
+  color: #fff;
+  line-height: 1.2;
+}
+
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .spec-box {
+    padding: 12px;
+  }
+  .spec-box i {
+    font-size: 20px;
+  }
+  .spec-box h6 {
+    font-size: 14px;
+  }
+  .spec-box p {
+    font-size: 13px;
+  }
+}
+
+.rent-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: linear-gradient(135deg, #1A3B19, #2F5A2C);
+  padding: 8px 22px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Hover Background Glow */
+.rent-now:hover {
+  background: linear-gradient(135deg, #C2F829, #C2F829); /* lighter green */
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(72, 187, 120, 0.35); /* soft glow */
+  color: #1A3B19;
+}
+
+/* Active press effect */
+.rent-now:active {
+  transform: scale(0.92);
+}
+
+/* Ripple click effect */
+.rent-now::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: rgba(198, 252, 42, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.5s ease, opacity 0.8s ease;
+}
+
+.rent-now:active::after {
+  transform: scale(2.2);
+  opacity: 0;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+
+/* Shine effect */
+.rent-now::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+.rent-now:hover::before {
+  animation: shine 0.8s ease forwards;
+}
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+/* Arrow styling */
+.rent-now .arrow {
+  font-size: 20px;   /* bigger arrow */
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.rent-now:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* Responsive (mobile) */
+@media (max-width: 768px) {
+  .rent-now {
+    font-size: 13px;
+    padding: 7px 18px;
+    gap: 8px;
+  }
+  .rent-now .arrow {
+    font-size: 18px;
+  }
+       .nav-pills .nav-link {
+    color: #333;
+    font-weight: 500;
+    width: 110px !important;
+  }
+}
+
+.spec-item {
+          border-bottom: 1px solid #ddd;
+          margin-bottom: 8px;
+        }
+        .spec-toggle {
+          width: 100%;
+          text-align: left;
+          background: none;
+          border: none;
+          padding: 12px 0;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #222;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+        }
+        .toggle-icon {
+          font-size: 1.2rem;
+          transition: transform 0.3s ease;
+        }
+        .spec-content {
+          padding: 0 0 12px 0;
+          font-size: 0.95rem;
+          color: #555;
+          line-height: 1.6;
+        }
+        .nav-tabs .nav-link {
+          cursor: pointer;
+        }
+
+        .nav-pills .nav-link {
+    color: #333;
+    font-weight: 500;
+    width: 150px;
+  }
+  .nav-pills .nav-link.active {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    color: #000;
+    font-size: 14px;
+    
+  }
+
+  

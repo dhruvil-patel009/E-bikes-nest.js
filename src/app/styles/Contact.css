@@ -1,0 +1,56 @@
+.set-location-padding{
+    /* padding-left: 100px; */
+    padding-top: 80px;
+}
+
+.responsive-map {
+  width: 600px;
+  height: 450px;
+}
+
+@media (max-width: 576px) {
+    .set-location-padding{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.responsive-map {
+    width: 330px;
+    height: 450px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .responsive-map {
+    width: 350px;
+    height: 450px;
+  }
+}
+
+
+.contact-form input,
+.contact-form textarea {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 0.4rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  box-shadow: none;
+  outline: none;
+  border-color: #0d6efd;
+}
+
+/* Scroll Animation Base */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+/* Visible on scroll */
+.scroll-animate.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}

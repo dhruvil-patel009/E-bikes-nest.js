@@ -1,0 +1,12 @@
+.warranty-page {
+  max-width: 1400px;
+  margin: auto;
+  font-size: 1.05rem;
+  color: #333;
+}
+
+.highlight {
+  background-color: #fff2cc;
+  padding: 2px 4px;
+  border-radius: 4px;
+}

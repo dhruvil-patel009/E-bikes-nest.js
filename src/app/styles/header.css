@@ -1,0 +1,219 @@
+/* Header Styles */
+nav ul.nav li.nav-item a {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.main-header {
+  background-color: #1a3b19;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease-in-out; /* smooth animation */
+  padding: 0.2rem 0; /* default navbar height */
+}
+
+.main-header.scrolled {
+  padding: 0.4rem 0; /* reduced height */
+}
+
+.logo {
+  height: 70px;
+  width: auto;
+  transition: all 0.3s ease-in-out; /* smooth shrink */
+}
+
+.logo-small {
+  height: 50px; /* reduced height */
+  width: auto;
+}
+
+
+.set-logo-height {
+  height: 90px;
+  width: 110px;
+  cursor: pointer;
+}
+
+.set-bg-header {
+  background-color: #1A3B19 !important;
+}
+
+.menu-position {
+  background: none;
+  padding: 0.5rem;
+  border: 1px solid transparent;
+}
+
+.menu-position:active,
+.menu-position:focus {
+  border: 1px solid #1A3B19 !important;
+  outline: none;
+}
+
+.menu-position:hover {
+  border: 1px solid #1A3B19 !important;
+}
+
+.custom-nav .btn {
+  border: none;
+  background: transparent;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.custom-nav .btn:hover {
+  transform: rotate(90deg);
+  color: #ff4d4d; /* red tint on hover */
+}
+
+
+/* Desktop Navigation - Always visible */
+@media (min-width: 768px) {
+  .custom-nav {
+    display: flex !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    position: static !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+ 
+  .custom-nav li.nav-item {
+    padding: 0;
+  }
+
+  .custom-nav li.nav-item a {
+    padding: 0.5rem 1rem;
+    display: inline-block;
+  }
+}
+
+/* Mobile Navigation */
+@media (max-width: 767px) {
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+
+   .set-logo-height {
+  height: 60px;
+  width: 80px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+  .menu-position {
+    position: absolute;
+    right: 0px;
+  }
+
+ .custom-nav {
+  position: fixed;   /* make it fixed to cover height */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;  /* side menu width */
+  margin: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  background-color: rgb(247, 147, 30);
+  
+  /* Start hidden off-screen */
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.custom-nav.open {
+  transform: translateX(0);  /* Slide in from left */
+}
+
+.custom-nav li.nav-item {
+  padding: 15px;
+  text-align: left;
+}
+
+.custom-nav li.nav-item a {
+  display: block;
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.custom-nav li.nav-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.2s ease;
+  }
+
+  .custom-nav.open li.nav-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  nav ul.nav li.nav-item a {
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+  .custom-nav.open li.nav-item:nth-child(1) { transition-delay: 0.1s; }
+  .custom-nav.open li.nav-item:nth-child(2) { transition-delay: 0.2s; }
+  .custom-nav.open li.nav-item:nth-child(3) { transition-delay: 0.3s; }
+  .custom-nav.open li.nav-item:nth-child(4) { transition-delay: 0.4s; }
+  .custom-nav.open li.nav-item:nth-child(5) { transition-delay: 0.5s; }
+  .custom-nav.open li.nav-item:nth-child(6) { transition-delay: 0.6s; }
+  .custom-nav.open li.nav-item:nth-child(7) { transition-delay: 0.7s; }
+  .custom-nav.open li.nav-item:nth-child(8) { transition-delay: 0.8s; }
+
+  h1.fw-bold {
+    margin: 0;
+  }
+  
+}
+
+/* Loading Spinner */
+.spinner-border {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: -0.125em;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.set-color-menu{
+  color: rgb(198, 252, 42) !important;
+}
+
+.set-color-menu:hover{
+  color: rgb(198, 252, 42) !important;
+}

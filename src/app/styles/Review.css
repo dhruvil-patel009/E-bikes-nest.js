@@ -1,0 +1,71 @@
+.review-slider {
+  overflow: hidden;
+  width: 104%;
+  position: relative;
+}
+
+.review-track {
+  display: flex;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.review-card {
+  flex: 0 0 110%; 
+  max-width: 117%;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .review-card {
+    flex: 0 0 45%; 
+    max-width: 45%;
+  }
+}
+
+.review-track::-webkit-scrollbar {
+  display: none; 
+}
+
+.review-text {
+  color: #c2f829;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  white-space: pre-line; /* interpret \n as line break */
+}
+
+.dots {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px;
+  background: #aaa;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.dot.active {
+  background: #1a3b19; /* ✅ Active dot color */
+}
+
+/* Initial hidden state */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease-out;
+}
+
+/* When visible */
+.scroll-animate.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}

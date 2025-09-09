@@ -1,0 +1,105 @@
+.rent-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: linear-gradient(135deg, #1A3B19, #2F5A2C);
+  padding: 8px 22px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🔹 Hover Background Glow */
+.rent-now:hover {
+  background: linear-gradient(135deg, #C2F829, #C2F829); /* lighter green */
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(72, 187, 120, 0.35); /* soft glow */
+  color: #1A3B19;
+}
+
+/* Active press effect */
+.rent-now:active {
+  transform: scale(0.92);
+}
+
+/* Ripple click effect */
+.rent-now::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: rgba(198, 252, 42, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.5s ease, opacity 0.8s ease;
+}
+
+.rent-now:active::after {
+  transform: scale(2.2);
+  opacity: 0;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+
+/* Shine effect */
+.rent-now::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+.rent-now:hover::before {
+  animation: shine 0.8s ease forwards;
+}
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+/* Arrow styling */
+.rent-now .arrow {
+  font-size: 20px;   /* bigger arrow */
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.rent-now:hover .arrow {
+  transform: translateX(6px);
+}
+
+
+
+/* Responsive (mobile) */
+@media (max-width: 768px) {
+  .rent-now {
+    font-size: 13px;
+    padding: 7px 18px;
+    gap: 8px;
+  }
+  .rent-now .arrow {
+    font-size: 18px;
+  }
+}

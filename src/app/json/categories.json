@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Gearhead",
+    "image": "/images/main-cycle.jpeg",
+    "products": 35
+  },
+  {
+    "id": 2,
+    "name": "Freeroll",
+    "image": "/images/e-scooter.jpeg",
+    "products": 20
+  },
+  {
+    "id": 3,
+    "name": "Helmets",
+    "image": "/images/main-cycle.jpeg",
+    "products": 15
+  },
+  {
+    "id": 4,
+    "name": "Cycle-1",
+    "image": "/images/e-scooter.jpeg",
+    "products": 12
+  },
+  {
+    "id": 5,
+    "name": "Bike-1",
+    "image": "/images/main-cycle.jpeg",
+    "products": 10
+  },
+  {
+    "id": 5,
+    "name": "E-bike-2",
+    "image": "/images/e-scooter.jpeg",
+    "products": 10
+  },
+  {
+    "id": 5,
+    "name": "E-bike-3",
+    "image": "/images/main-cycle.jpeg",
+    "products": 10
+  },
+  {
+    "id": 5,
+    "name": "E-bike-4",
+    "image": "/images/e-scooter.jpeg",
+    "products": 10
+  },
+  {
+    "id": 5,
+    "name": "E-bike-5",
+    "image": "/images/main-cycle.jpeg",
+    "products": 10
+  }
+]
