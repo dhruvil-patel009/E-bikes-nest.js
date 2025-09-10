@@ -405,7 +405,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Head from "next/head";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import productsData from "../json/products.json";
+import productsData from "../../data/productData.json";
 import { motion } from "framer-motion";
 import '../styles/ProductSection.css';
 
@@ -428,15 +428,14 @@ export default function ProductTabs() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleProductClick = (productName) => {
+  const handleProductClick = (slug) => {
     setLoading(true);
     setTimeout(() => {
-      const slug = productName.replace(/\s+/g, "-");
-      router.push(`/${slug}`);
-    }, 9000);
+      router.push(`/products/${slug}`);
+    }, 800);
   };
 
-  const filteredProducts = productsData[activeTab] || [];
+  const filteredProducts = productsData;
 
   return (
     <>
@@ -514,7 +513,7 @@ export default function ProductTabs() {
         
 
         <div className="row">
-  {filteredProducts.map((product, i) => (
+  {filteredProducts.map((product) => (
     <div className="col-12 col-md-4 mb-4 text-center shadow-hover" key={product.id}>
       <article 
         className="product-card card border-0 shadow-sm text-center h-100 position-relative"
@@ -539,60 +538,67 @@ export default function ProductTabs() {
 
         {/* Product Image */}
         <img
-          src={product.image}
-          alt={`${product.name} - electric bike`}
-          className="img-fluid mb-3 product-image"
-          loading="lazy"
-          itemProp="image"
-          title={product.name}
-          onClick={() => handleProductClick(product.name)}
-          style={{ cursor: "pointer", maxHeight: "220px", objectFit: "contain" }}
-        />
+                  src={product.images.front}
+                  alt={`${product.title} - electric bike`}
+                  className="img-fluid mb-3 product-image"
+                  loading="lazy"
+                  itemProp="image"
+                  title={product.title}
+                  onClick={() => handleProductClick(product.slug)}
+                  style={{ cursor: "pointer", maxHeight: "220px", objectFit: "contain" }}
+                />
 
         {/* Product Title */}
         {pathname === "/" ? (
           <h3 className="fs-sm-4 fs-3 fw-bold" style={{color:'#1A3B19'}} itemProp="name">
-            {product.name}
+            {product.title}
           </h3>
         ) : (
           <h2 className="fs-sm-4 fs-3 fw-bold" style={{color:'#1A3B19'}} itemProp="name">
-            {product.name}
+            {product.title}
           </h2>
         )}
 
         {/* Pricing */}
-        <p 
+        {/* <p 
           className="product-price mt-2 fs-5"
           itemProp="offers"
           style={{color:'#1A3B19'}}
           itemScope
           itemType="https://schema.org/Offer"
         >
-          <span itemProp="price" style={{color:'#1A3B19'}}>{product.price}</span>
+          <span itemProp="price" style={{color:'#1A3B19'}}> ${product.price} {product.currency}</span>
           <meta itemProp="priceCurrency" content="AUD" />
           {product.oldPrice && (
             <span className="text-decoration-line-through ms-2 fw-600" style={{color:'#ccc'}}>
-              {product.oldPrice}
+              ${product.oldPrice}
             </span>
           )}
-        </p>
-        <div className="d-flex justify-content-center gap-4 my-3">
+        </p> */}
+
+
+        <p>
+  ${product.price.current} {product.price.currency}
+  {product.price.original && (
+    <span className="text-decoration-line-through ms-2">
+      ${product.price.original}
+    </span>
+  )}
+</p>
+<div className="d-flex justify-content-center gap-4 my-3">
   <div className="text-center">
-    <i className="bi bi-battery-charging fs-4" style={{color:'#1A3B19'}}></i>
-    {/* <p className="small mb-0" style={{color:'#1A3B19'}}>Battery</p> */}
-    <p className="small mb-0" style={{ color: '#1A3B19' }}>{product.battery || "Battery"}</p>
+    <i className="bi bi-battery-charging fs-4"></i>
+    <p className="small mb-0">{product.specifications?.highlights?.[0]?.value || "Battery"}</p>
   </div>
   <div className="text-center">
-    <i className="bi bi-clock-history fs-4" style={{ color: '#1A3B19' }}></i>
-    {/* <p className="small mb-0" style={{color:'#1A3B19'}}>Motor</p> */}
-    <p className="small mb-0" style={{ color: '#1A3B19' }}>{product.batteryHours || "Motor"}</p>
+    <i className="bi bi-clock-history fs-4"></i>
+    <p className="small mb-0">{product.specifications?.highlights?.[2]?.value || "Hours"}</p>
   </div>
   <div className="text-center">
-    <i className="bi bi-speedometer fs-4" style={{ color: '#1A3B19' }}></i>
-    {/* <p className="small mb-0" style={{color:'#1A3B19'}}>Range</p> */}
-    <p className="small mb-0" style={{ color: '#1A3B19' }}>{product.topSpeed || "Range"}</p>
+    <i className="bi bi-speedometer fs-4"></i>
+    <p className="small mb-0">{product.specifications?.performance?.speed?.[2] || "Speed"}</p>
   </div>
-</div>
+  </div>
       </article>
     </div>
   ))}
