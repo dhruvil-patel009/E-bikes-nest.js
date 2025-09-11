@@ -17,7 +17,7 @@
 // //       <meta itemProp="name" content="Shop Categories" />
 // //       <h1 className="text-center mb-5">Accessories</h1>
 // //       <div className="category-scroll d-flex flex-nowrap overflow-auto gap-4 mt-5 px-2 px-md-0">
-      
+
 // //         {categoryData.map((category, index) => (
 // //           <article
 // //             key={category.id}
@@ -219,9 +219,9 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import categoryData from '../json/categories.json';
-import '../styles/CategorySection.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import categoryData from "../json/categories.json";
+import "../styles/CategorySection.css";
 import { motion } from "framer-motion";
 
 export default function Accessories() {
@@ -241,7 +241,7 @@ export default function Accessories() {
         left: direction === "next" ? scrollAmount : -scrollAmount,
         behavior: "smooth",
       });
-      setCurrentSlide(prev =>
+      setCurrentSlide((prev) =>
         direction === "next"
           ? Math.min(prev + 1, totalPages - 1)
           : Math.max(prev - 1, 0)
@@ -278,14 +278,17 @@ export default function Accessories() {
       <meta itemProp="name" content="Shop Categories" />
       <h1 className="text-center mb-4 set-accesories-color">Accessories</h1>
 
-      <div className="category-scroll d-flex flex-nowrap overflow-hidden gap-4 mb-4" ref={scrollRef}>
+      <div
+        className="category-scroll d-flex flex-nowrap overflow-hidden gap-4 mb-4"
+        ref={scrollRef}
+      >
         {categoryData.map((category, index) => (
           <article
             key={category.id}
             itemScope
             itemType="https://schema.org/Thing"
             className="category-circle-wrapper flex-shrink-0 text-center"
-            style={{ width: '200px' }}
+            style={{ width: "200px" }}
           >
             <div className="circle mt-3 position-relative mx-auto">
               <Image
@@ -297,7 +300,9 @@ export default function Accessories() {
                 itemProp="image"
               />
             </div>
-            <h5 className="mt-3 mb-1 fw-medium" itemProp="name">{category.name}</h5>
+            <h5 className="mt-3 mb-1 fw-medium" itemProp="name">
+              {category.name}
+            </h5>
             {category.products && (
               <small className="text-muted" itemProp="description">
                 {category.products} products
@@ -310,10 +315,20 @@ export default function Accessories() {
       {/* Navigation Controls */}
       <div className="d-flex flex-column align-items-center mt-4">
         <div className="d-flex gap-3 mb-3">
-          <button className="btn btn-outline-dark btn-sm" style={{borderRadius:'50%'}} onClick={() => scroll("prev")} disabled={currentSlide === 0}>
+          <button
+            className="btn btn-outline-dark btn-sm"
+            style={{ borderRadius: "50%" }}
+            onClick={() => scroll("prev")}
+            disabled={currentSlide === 0}
+          >
             <i className="bi bi-chevron-left"></i>
           </button>
-          <button className="btn btn-outline-dark btn-sm" style={{borderRadius:'50%'}} onClick={() => scroll("next")} disabled={currentSlide === totalPages - 1}>
+          <button
+            className="btn btn-outline-dark btn-sm"
+            style={{ borderRadius: "50%" }}
+            onClick={() => scroll("next")}
+            disabled={currentSlide === totalPages - 1}
+          >
             <i className="bi bi-chevron-right"></i>
           </button>
         </div>

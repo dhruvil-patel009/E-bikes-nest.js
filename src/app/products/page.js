@@ -76,7 +76,7 @@
 //             >
 //               <span
 //                 className="sale-badge"
-                
+
 //                 aria-hidden="true"
 //               >
 //                 Sale
@@ -100,7 +100,7 @@
 //           </div>
 //         ))}
 //       </div>
-      
+
 //     </motion.section>
 //     </>
 //   );
@@ -220,7 +220,7 @@
 //   itemType="https://schema.org/Product"
 // >
 //   <span className="sale-badge" aria-hidden="true">Sale</span>
-  
+
 //   <img
 //     src={product.image}
 //     alt={`Image of ${product.name}`}
@@ -242,13 +242,13 @@
 //     <button className="btn btn-sm btn-warning rounded-circle" aria-label="Add to Cart">
 //       <i className="bi bi-cart"></i>
 //     </button>
-    
+
 //     <button
 //   className="btn btn-sm btn-outline-warning rounded-circle"
 //   aria-label="Quick View"
-  
+
 // >
-  
+
 // </button>
 
 //     <button className="btn btn-sm btn-outline-warning rounded-circle" aria-label="WishList">
@@ -317,7 +317,7 @@
 //       } else {
 //         router.push('/E-bike-8-10h');
 //       }
-//     }, 1000); 
+//     }, 1000);
 //   };
 
 //   const filteredProducts = productsData[activeTab] || [];
@@ -360,13 +360,13 @@
 //             <div className="col-12 col-md-4 mb-4 text-center shadow-hover" key={product.id}>
 //               <article
 //                 className="product-card position-relative overflow-hidden"
-                // style={{
-                //   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1)",
-                //   borderRadius: "0.5rem",
-                //   padding: "1rem",
-                //   backgroundColor: "#fff",
-                //   transition: "transform 0.2s ease, box-shadow 0.2s ease"
-                // }}
+// style={{
+//   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1)",
+//   borderRadius: "0.5rem",
+//   padding: "1rem",
+//   backgroundColor: "#fff",
+//   transition: "transform 0.2s ease, box-shadow 0.2s ease"
+// }}
 //                 itemScope
 //                 itemType="https://schema.org/Product"
 //               >
@@ -407,7 +407,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import productsData from "../../data/productData.json";
 import { motion } from "framer-motion";
-import '../styles/ProductSection.css';
+import "../styles/ProductSection.css";
+import Image from "next/image";
 
 export default function ProductTabs() {
   const pathname = usePathname();
@@ -419,7 +420,10 @@ export default function ProductTabs() {
   useEffect(() => {
     const handleScroll = () => {
       const section = document.getElementById("product-section");
-      if (section && section.getBoundingClientRect().top <= window.innerHeight * 0.75) {
+      if (
+        section &&
+        section.getBoundingClientRect().top <= window.innerHeight * 0.75
+      ) {
         setIsVisible(true);
       }
     };
@@ -450,51 +454,72 @@ export default function ProductTabs() {
         <link rel="canonical" href="https://www.beyondbikes.com.au/products" />
 
         <meta
-    name="keywords"
-    content="electric bikes Melbourne, rent e-bikes, Beyond Bikes Australia, e-bike hire Melbourne"
-  />
+          name="keywords"
+          content="electric bikes Melbourne, rent e-bikes, Beyond Bikes Australia, e-bike hire Melbourne"
+        />
 
         {/* Open Graph */}
-        <meta property="og:title" content="Beyond Bikes | E-Bike Rentals Melbourne – Products" />
-        <meta property="og:description" content="Explore our range of Melbourne e-bikes—best sellers and top-rated electric bikes." />
-        <meta property="og:url" content="https://www.beyondbikes.com.au/products" />
-        <meta property="og:image" content="https://www.beyondbikes.com.au/images/og-image.jpg" />
+        <meta
+          property="og:title"
+          content="Beyond Bikes | E-Bike Rentals Melbourne – Products"
+        />
+        <meta
+          property="og:description"
+          content="Explore our range of Melbourne e-bikes—best sellers and top-rated electric bikes."
+        />
+        <meta
+          property="og:url"
+          content="https://www.beyondbikes.com.au/products"
+        />
+        <meta
+          property="og:image"
+          content="https://www.beyondbikes.com.au/images/og-image.jpg"
+        />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Beyond Bikes | E-Bike Rentals Melbourne – Products" />
-        <meta name="twitter:description" content="Explore our range of Melbourne e-bikes—best sellers and top-rated electric bikes." />
-        <meta name="twitter:image" content="https://www.beyondbikes.com.au/images/og-image.jpg" />
+        <meta
+          name="twitter:title"
+          content="Beyond Bikes | E-Bike Rentals Melbourne – Products"
+        />
+        <meta
+          name="twitter:description"
+          content="Explore our range of Melbourne e-bikes—best sellers and top-rated electric bikes."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.beyondbikes.com.au/images/og-image.jpg"
+        />
       </Head>
 
       {pathname !== "/" && <Header />}
 
       {/* Loader Overlay */}
-      
-{loading && (
+
+      {loading && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            zIndex: 9999,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <div
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(255, 255, 255, 0.8)",
-              zIndex: 9999,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            className="loader"
+            style={{ width: "4rem", height: "4rem", color: "#1A3B19" }}
+            role="status"
           >
-            <div
-              className="loader"
-              style={{ width: "4rem", height: "4rem", color:'#1A3B19' }}
-              role="status"
-            >
-              <span className="visually-hidden">Loading...</span>
-            </div>
+            <span className="visually-hidden">Loading...</span>
           </div>
-        )}
+        </div>
+      )}
       <motion.section
         id="product-section"
         className="container py-4 px-3 px-sm-0"
@@ -505,39 +530,48 @@ export default function ProductTabs() {
       >
         {/* Dynamic Page Title */}
         {pathname === "/" ? (
-          <h2 className="mt-3 mb-5 fs-1 fw-bold text-center" style={{ color: "#1A3B19" }}>Bikes for Rent</h2>
+          <h2
+            className="mt-3 mb-5 fs-1 fw-bold text-center"
+            style={{ color: "#1A3B19" }}
+          >
+            Bikes for Rent
+          </h2>
         ) : (
-          <h1 className="mt-3 mb-5 fs-1 fw-bold text-center" style={{ color: "#1A3B19" }}>Our E-Bikes for Rent</h1>
+          <h1
+            className="mt-3 mb-5 fs-1 fw-bold text-center"
+            style={{ color: "#1A3B19" }}
+          >
+            Our E-Bikes for Rent
+          </h1>
         )}
 
-        
-
         <div className="row">
-  {filteredProducts.map((product) => (
-    <div className="col-12 col-md-4 mb-4 text-center shadow-hover" key={product.id}>
-      <article 
-        className="product-card card border-0 shadow-sm text-center h-100 position-relative"
-        itemScope 
-        style={{
-                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1)",
+          {filteredProducts.map((product) => (
+            <div
+              className="col-12 col-md-4 mb-4 text-center shadow-hover"
+              key={product.id}
+            >
+              <article
+                className="product-card card border-0 shadow-sm text-center h-100 position-relative"
+                itemScope
+                style={{
+                  boxShadow:
+                    "0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1)",
                   borderRadius: "0.5rem",
                   padding: "1rem",
                   backgroundColor: "#f9f9f9",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease"
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
                 }}
-        // style="box-shadow:0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1);border-radius:0.5rem;padding:1rem;background-color:#fff;transition:transform 0.2s ease, box-shadow 0.2s ease"
-        itemType="https://schema.org/Product"
-      >
-        {/* Sale Ribbon */}
-        <span 
-          className="sale-badge"
-          aria-hidden="true"
-        >
-          Sale
-        </span>
+                // style="box-shadow:0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1);border-radius:0.5rem;padding:1rem;background-color:#fff;transition:transform 0.2s ease, box-shadow 0.2s ease"
+                itemType="https://schema.org/Product"
+              >
+                {/* Sale Ribbon */}
+                <span className="sale-badge" aria-hidden="true">
+                  Sale
+                </span>
 
-        {/* Product Image */}
-        <img
+                {/* Product Image */}
+                <Image
                   src={product.images.front}
                   alt={`${product.title} - electric bike`}
                   className="img-fluid mb-3 product-image"
@@ -545,22 +579,34 @@ export default function ProductTabs() {
                   itemProp="image"
                   title={product.title}
                   onClick={() => handleProductClick(product.slug)}
-                  style={{ cursor: "pointer", maxHeight: "220px", objectFit: "contain" }}
+                  style={{
+                    cursor: "pointer",
+                    maxHeight: "220px",
+                    objectFit: "contain",
+                  }}
                 />
 
-        {/* Product Title */}
-        {pathname === "/" ? (
-          <h3 className="fs-sm-4 fs-3 fw-bold" style={{color:'#1A3B19'}} itemProp="name">
-            {product.title}
-          </h3>
-        ) : (
-          <h2 className="fs-sm-4 fs-3 fw-bold" style={{color:'#1A3B19'}} itemProp="name">
-            {product.title}
-          </h2>
-        )}
+                {/* Product Title */}
+                {pathname === "/" ? (
+                  <h3
+                    className="fs-sm-4 fs-3 fw-bold"
+                    style={{ color: "#1A3B19" }}
+                    itemProp="name"
+                  >
+                    {product.title}
+                  </h3>
+                ) : (
+                  <h2
+                    className="fs-sm-4 fs-3 fw-bold"
+                    style={{ color: "#1A3B19" }}
+                    itemProp="name"
+                  >
+                    {product.title}
+                  </h2>
+                )}
 
-        {/* Pricing */}
-        {/* <p 
+                {/* Pricing */}
+                {/* <p 
           className="product-price mt-2 fs-5"
           itemProp="offers"
           style={{color:'#1A3B19'}}
@@ -576,52 +622,69 @@ export default function ProductTabs() {
           )}
         </p> */}
 
-
-        <p>
-  ${product.price.current} {product.price.currency}
-  {product.price.original && (
-    <span className="text-decoration-line-through ms-2">
-      ${product.price.original}
-    </span>
-  )}
-</p>
-<div className="d-flex justify-content-center gap-4 my-3">
-  <div className="text-center">
-    <i className="bi bi-battery-charging fs-4"></i>
-    <p className="small mb-0">{product.specifications?.highlights?.[0]?.value || "Battery"}</p>
-  </div>
-  <div className="text-center">
-    <i className="bi bi-clock-history fs-4"></i>
-    <p className="small mb-0">{product.specifications?.highlights?.[2]?.value || "Hours"}</p>
-  </div>
-  <div className="text-center">
-    <i className="bi bi-speedometer fs-4"></i>
-    <p className="small mb-0">{product.specifications?.performance?.speed?.[2] || "Speed"}</p>
-  </div>
-  </div>
-      </article>
-    </div>
-  ))}
-</div>
-
+                <p>
+                  ${product.price.current} {product.price.currency}
+                  {product.price.original && (
+                    <span className="text-decoration-line-through ms-2">
+                      ${product.price.original}
+                    </span>
+                  )}
+                </p>
+                <div className="d-flex justify-content-center gap-4 my-3">
+                  <div className="text-center">
+                    <i className="bi bi-battery-charging fs-4"></i>
+                    <p className="small mb-0">
+                      {product.specifications?.highlights?.[0]?.value ||
+                        "Battery"}
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <i className="bi bi-clock-history fs-4"></i>
+                    <p className="small mb-0">
+                      {product.specifications?.highlights?.[2]?.value ||
+                        "Hours"}
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <i className="bi bi-speedometer fs-4"></i>
+                    <p className="small mb-0">
+                      {product.specifications?.performance?.speed?.[2] ||
+                        "Speed"}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
       </motion.section>
 
       {/* Structured Data for Products List */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          "itemListElement": filteredProducts.map((p, idx) => ({
-            "@type": "Product",
-            position: idx + 1,
-            name: p.name,
-            image: `https://www.beyondbikes.com.au${p.image}`,
-            url: `https://www.beyondbikes.com.au/${p.slug || p.name.replace(/\s+/g, "-")}`,
-            brand: { "@type": "Brand", name: "Beyond Bikes" },
-            offers: { "@type": "Offer", price: p.price, priceCurrency: "AUD", availability: "https://schema.org/InStock" }
-          }))
-        })
-      }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            itemListElement: filteredProducts.map((p, idx) => ({
+              "@type": "Product",
+              position: idx + 1,
+              name: p.name,
+              image: `https://www.beyondbikes.com.au${p.image}`,
+              url: `https://www.beyondbikes.com.au/${
+                p.slug || p.name.replace(/\s+/g, "-")
+              }`,
+              brand: { "@type": "Brand", name: "Beyond Bikes" },
+              offers: {
+                "@type": "Offer",
+                price: p.price,
+                priceCurrency: "AUD",
+                availability: "https://schema.org/InStock",
+              },
+            })),
+          }),
+        }}
+      />
 
       {pathname === "/products" && <Footer />}
     </>

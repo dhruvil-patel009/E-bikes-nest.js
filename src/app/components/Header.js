@@ -110,7 +110,6 @@
 // import { useRouter } from 'next/navigation';
 // import { usePathname } from 'next/navigation';
 
-
 // export default function Header() {
 //   const [menuOpen, setMenuOpen] = useState(false);
 //   const router = useRouter();
@@ -132,7 +131,6 @@
 //         </button>
 
 //         <nav className="d-md-flex flex-grow-1 justify-content-end">
-          
 
 // <ul
 //   className={`nav flex-column flex-md-row text-center custom-nav set-bg-header ${menuOpen ? 'open' : ''}`}
@@ -158,12 +156,8 @@
 //   ))}
 // </ul>
 
-
-
-
 //         </nav>
 
-        
 //       </div>
 //     </header>
 //   );
@@ -242,7 +236,7 @@
 //       setLoading(true);
 //       setTimeout(() => {
 //         router.push('/');
-//       }, 1000); 
+//       }, 1000);
 //     }
 //   }}
 //           />
@@ -287,11 +281,12 @@
 // }
 
 "use client";
-import Link from 'next/link';
-import '../styles/header.css';
-import { useState,useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import Head from 'next/head';
+import Link from "next/link";
+import "../styles/header.css";
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import Head from "next/head";
+import Image from "next/image";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -300,15 +295,14 @@ export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false); // ✅ Scroll state
 
-
   const navLinks = [
-    ['/', 'Home'],
-    ['/products', 'Products'],
-    ['/rental', 'Rental'],
-    ['/contact', 'Contact'],
-    ['/about', 'About Us'],
-    ['/basicknowledge', 'Privacy Policy'],
-    ['/termsandcondition','Terms and Condition']
+    ["/", "Home"],
+    ["/products", "Products"],
+    ["/rental", "Rental"],
+    ["/contact", "Contact"],
+    ["/about", "About Us"],
+    ["/basicknowledge", "Privacy Policy"],
+    ["/termsandcondition", "Terms and Condition"],
   ];
 
   const handleNavClick = (href) => {
@@ -321,25 +315,24 @@ export default function Header() {
   };
 
   useEffect(() => {
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  };
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
-
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // JSON-LD for Navigation (SEO)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SiteNavigationElement",
-    "name": navLinks.map(([_, label]) => label),
-    "url": navLinks.map(([href]) => `https://www.beyondbikes.com.au${href}`),
+    name: navLinks.map(([_, label]) => label),
+    url: navLinks.map(([href]) => `https://www.beyondbikes.com.au${href}`),
   };
 
   return (
@@ -353,19 +346,24 @@ export default function Header() {
       </Head>
 
       {/* ✅ Hidden H1 for SEO */}
-      <h1 className="visually-hidden"><strong>Beyond Bikes</strong></h1>
+      <h1 className="visually-hidden">
+        <strong>Beyond Bikes</strong>
+      </h1>
 
       {/* Loader Overlay */}
       {loading && (
         <div
           style={{
             position: "fixed",
-            top: 0, left: 0, right: 0, bottom: 0,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             backgroundColor: "rgba(255, 255, 255, 0.8)",
             zIndex: 9999,
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <div
@@ -380,23 +378,25 @@ export default function Header() {
       )}
 
       <header
-        className={`main-header w-100 sticky-top text-dark ${scrolled ? "scrolled" : ""}`}
+        className={`main-header w-100 sticky-top text-dark ${
+          scrolled ? "scrolled" : ""
+        }`}
         style={{
-          backgroundColor: '#1A3B19',
-          boxShadow: '0 4px 25px rgba(0, 0, 0, 0.8)',
+          backgroundColor: "#1A3B19",
+          boxShadow: "0 4px 25px rgba(0, 0, 0, 0.8)",
           zIndex: 1000,
         }}
       >
         <div className="container position-relative py-sm-3 py-1 d-flex justify-content-between align-items-center">
-          <img
+          <Image
             src="/images/Latest-beyond-logo-12-08.png"
             alt="Beyond Bikes Logo"
             className={`logo ${scrolled ? "logo-small" : ""}`}
             onClick={() => {
-              if (pathname !== '/') {
+              if (pathname !== "/") {
                 setLoading(true);
                 setTimeout(() => {
-                  router.push('/');
+                  router.push("/");
                 }, 1000);
               }
             }}
@@ -407,7 +407,7 @@ export default function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle navigation menu"
           >
-            <img
+            <Image
               src="/images/HemburgMenu.svg"
               height="35px"
               width="35px"
@@ -417,29 +417,30 @@ export default function Header() {
 
           <nav className="d-md-flex flex-grow-1 justify-content-end">
             <ul
-              className={`nav flex-column flex-md-row text-center custom-nav set-bg-header ${menuOpen ? 'open' : ''
-                }`}
+              className={`nav flex-column flex-md-row text-center custom-nav set-bg-header ${
+                menuOpen ? "open" : ""
+              }`}
             >
-
               <li className="nav-item d-md-none text-end mb-0 pb-0 pe-3">
-  <button
-    className="btn text-light fs-3"
-    onClick={() => setMenuOpen(false)}
-    aria-label="Close menu"
-  >
-    <i className="bi bi-x-lg"></i> 
-  </button>
-</li>
+                <button
+                  className="btn text-light fs-3"
+                  onClick={() => setMenuOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <i className="bi bi-x-lg"></i>
+                </button>
+              </li>
 
               {navLinks.map(([href, label], i) => (
                 <li className="nav-item mt-0" key={i}>
                   <a
                     role="button"
                     onClick={() => handleNavClick(href)}
-                    className={`nav-link set-header-text ${pathname === href
-                      ? 'set-color-menu fw-bold'
-                      : 'text-light'
-                      }`}
+                    className={`nav-link set-header-text ${
+                      pathname === href
+                        ? "set-color-menu fw-bold"
+                        : "text-light"
+                    }`}
                   >
                     {label}
                   </a>

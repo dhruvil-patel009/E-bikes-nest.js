@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import "../../styles/productdetails.css";
 import Header from "../../components/Header";
-import { useParams,useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Footer from "../../components/Footer";
 import Instagram from "../../../../public/images/instagram-latest.svg";
@@ -22,7 +22,6 @@ import {
 import CheckoutButton from "../../components/CheckoutButton";
 import productsData from "../../../data/productData.json";
 
-
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
@@ -35,7 +34,6 @@ const images = {
 };
 
 export default function ProductDetailsPage() {
-
   const { slug } = useParams();
   const router = useRouter();
   const product = productsData.find((p) => p.slug === slug);
@@ -43,7 +41,6 @@ export default function ProductDetailsPage() {
   const [quantity, setQuantity] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [showPayModal, setShowPayModal] = useState(false);
-  
 
   const handlePayNowbtn = () => {
     setShowPayModal(true);
@@ -54,8 +51,6 @@ export default function ProductDetailsPage() {
 
   const [openItem, setOpenItem] = useState(null);
   const [activeTab, setActiveTab] = useState("features");
-
-
 
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.bundle.min.js");
@@ -91,7 +86,7 @@ export default function ProductDetailsPage() {
     }
   };
 
-   if (!product) {
+  if (!product) {
     return (
       <div className="container py-5">
         <Header />
@@ -109,17 +104,29 @@ export default function ProductDetailsPage() {
       <Head>
         <title>{product.name} | Beyond Bikes Electric Bike</title>
         <meta name="description" content={product.description} />
-        <meta name="keywords" content={`Beyond Bikes, ${product.name}, electric bike, e-bike, rental, battery life, performance`} />
+        <meta
+          name="keywords"
+          content={`Beyond Bikes, ${product.name}, electric bike, e-bike, rental, battery life, performance`}
+        />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href={`https://www.beyondbikes.com.au/product/${product.slug}`} />
+        <link
+          rel="canonical"
+          href={`https://www.beyondbikes.com.au/product/${product.slug}`}
+        />
 
         {/* Open Graph / Social Sharing */}
         <meta property="og:title" content={`${product.name} | Beyond Bikes`} />
         <meta property="og:description" content={product.description} />
         <meta property="og:type" content="product" />
-        <meta property="og:url" content={`https://www.beyondbikes.com.au/product/${product.slug}`} />
-        <meta property="og:image" content={`https://www.beyondbikes.com.au/${product.images.front}`} />
+        <meta
+          property="og:url"
+          content={`https://www.beyondbikes.com.au/product/${product.slug}`}
+        />
+        <meta
+          property="og:image"
+          content={`https://www.beyondbikes.com.au/${product.images.front}`}
+        />
       </Head>
 
       <Header />
@@ -142,8 +149,8 @@ export default function ProductDetailsPage() {
             />
 
             <div className="d-sm-flex thumbnail-gallery mt-3">
-             {Object.keys(product.images).map((color) => (
-                <img
+              {Object.keys(product.images).map((color) => (
+                <Image
                   key={color}
                   src={product.images[color]}
                   alt={`${product.name} ${color} view`}
@@ -157,7 +164,7 @@ export default function ProductDetailsPage() {
           {/* Right Info Section */}
           <div className="col-xl-5">
             <h1 className="text-center fw-bold" itemProp="name">
-             {product.title}
+              {product.title}
             </h1>
             <p
               className="fs-4 text-center fw-bold"
@@ -166,79 +173,97 @@ export default function ProductDetailsPage() {
               itemType="https://schema.org/Offer"
             >
               PRICE : ${product.price.current} {product.price.currency}{" "}
-              {product.price.original && <del className="text-muted fs-4 ms-2">${product.price.original} {product.price.currency}</del>}
+              {product.price.original && (
+                <del className="text-muted fs-4 ms-2">
+                  ${product.price.original} {product.price.currency}
+                </del>
+              )}
               <meta itemProp="price" content={product.price.toString()} />
               <meta itemProp="priceCurrency" content={product.price.currency} />
               <link itemProp="availability" href="https://schema.org/InStock" />
             </p>
 
-{/* Example Specs (you can extend with product.specs if exists) */}
-         {/* Highlights Section */}
-<section className="container my-4">
-  <div className="row g-3">
-    {product.specifications?.highlights?.map((item, index) => (
-      <div className="col-6" key={index}>
-        <div className="spec-box">
-          <i className={`bi ${item.icon}`}></i>
-          <div>
-            <strong>{item.value || "—"}</strong>
-            <p>{item.label}</p>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+            {/* Example Specs (you can extend with product.specs if exists) */}
+            {/* Highlights Section */}
+            <section className="container my-4">
+              <div className="row g-3">
+                {product.specifications?.highlights?.map((item, index) => (
+                  <div className="col-6" key={index}>
+                    <div className="spec-box">
+                      <i className={`bi ${item.icon}`}></i>
+                      <div>
+                        <strong>{item.value || "—"}</strong>
+                        <p>{item.label}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
 
-{/* Tabs Section */}
-<section className="mt-3" itemScope itemType="https://schema.org/Product">
-  <h2 className="fw-bold text-orange mb-3">Specifications</h2>
+            {/* Tabs Section */}
+            <section
+              className="mt-3"
+              itemScope
+              itemType="https://schema.org/Product"
+            >
+              <h2 className="fw-bold text-orange mb-3">Specifications</h2>
 
-  {/* NAV TABS */}
-  <ul className="nav nav-pills mb-3 bg-light p-1 rounded-pill d-inline-flex">
-    {Object.keys(product.specifications?.tabs || {}).map((tabKey) => (
-      <li className="nav-item" key={tabKey}>
-        <button
-          className={`nav-link rounded-pill ${activeTab === tabKey ? "active" : ""}`}
-          onClick={() => setActiveTab(tabKey)}
-        >
-          {tabKey.charAt(0).toUpperCase() + tabKey.slice(1)}
-        </button>
-      </li>
-    ))}
-  </ul>
+              {/* NAV TABS */}
+              <ul className="nav nav-pills mb-3 bg-light p-1 rounded-pill d-inline-flex">
+                {Object.keys(product.specifications?.tabs || {}).map(
+                  (tabKey) => (
+                    <li className="nav-item" key={tabKey}>
+                      <button
+                        className={`nav-link rounded-pill ${
+                          activeTab === tabKey ? "active" : ""
+                        }`}
+                        onClick={() => setActiveTab(tabKey)}
+                      >
+                        {tabKey.charAt(0).toUpperCase() + tabKey.slice(1)}
+                      </button>
+                    </li>
+                  )
+                )}
+              </ul>
 
-  {/* TAB CONTENT */}
-  <div>
-    {activeTab &&
-      Object.entries(product.specifications.tabs[activeTab]).map(([itemKey, itemValue]) => (
-        <div className="spec-item" key={itemKey}>
-          <button
-            className="spec-toggle"
-            onClick={() => toggleItem(itemKey)}
-            aria-expanded={openItem === itemKey}
-          >
-            <strong>{itemKey.charAt(0).toUpperCase() + itemKey.slice(1)}</strong>
-            <span className="toggle-icon">{openItem === itemKey ? "−" : "+"}</span>
-          </button>
+              {/* TAB CONTENT */}
+              <div>
+                {activeTab &&
+                  Object.entries(product.specifications.tabs[activeTab]).map(
+                    ([itemKey, itemValue]) => (
+                      <div className="spec-item" key={itemKey}>
+                        <button
+                          className="spec-toggle"
+                          onClick={() => toggleItem(itemKey)}
+                          aria-expanded={openItem === itemKey}
+                        >
+                          <strong>
+                            {itemKey.charAt(0).toUpperCase() + itemKey.slice(1)}
+                          </strong>
+                          <span className="toggle-icon">
+                            {openItem === itemKey ? "−" : "+"}
+                          </span>
+                        </button>
 
-          {openItem === itemKey && (
-            <div className="spec-content">
-              {Array.isArray(itemValue) ? (
-                <ul>
-                  {itemValue.map((val, i) => (
-                    <li key={i}>{val}</li>
-                  ))}
-                </ul>
-              ) : (
-                itemValue
-              )}
-            </div>
-          )}
-        </div>
-      ))}
-  </div>
-</section>
+                        {openItem === itemKey && (
+                          <div className="spec-content">
+                            {Array.isArray(itemValue) ? (
+                              <ul>
+                                {itemValue.map((val, i) => (
+                                  <li key={i}>{val}</li>
+                                ))}
+                              </ul>
+                            ) : (
+                              itemValue
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )
+                  )}
+              </div>
+            </section>
             <CheckoutButton amount={6500} />
 
             {/* Wrap payment button */}
@@ -450,11 +475,11 @@ export default function ProductDetailsPage() {
           </h2>
 
           <article className="insurance-box fs-5">
-  <p>Insurance Offered</p>
-  {product.insurance?.map((item, index) => (
-    <p key={index}>{item}</p>
-  ))}
-</article>
+            <p>Insurance Offered</p>
+            {product.insurance?.map((item, index) => (
+              <p key={index}>{item}</p>
+            ))}
+          </article>
 
           {/* <article>
                     <h3 style={{ color: 'rgb(26, 59, 25)' }} className='mt-3 mb-5'>Rental Information</h3>
@@ -489,30 +514,26 @@ export default function ProductDetailsPage() {
             </h3>
             <div className="info-cards">
               {/* Left Card */}
-             <div className="info-card">
-  <h4 className="info-header">Documents Required</h4>
-  <ul className="info-list">
-    {product.rentalInfo?.documents?.map((doc, index) => (
-      <li key={index}>{doc}</li>
-    ))}
-  </ul>
-</div>
-
+              <div className="info-card">
+                <h4 className="info-header">Documents Required</h4>
+                <ul className="info-list">
+                  {product.rentalInfo?.documents?.map((doc, index) => (
+                    <li key={index}>{doc}</li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Right Card */}
-             <div className="info-card">
-  <h4 className="info-header">Our Rental Fee Includes</h4>
-  <ul className="info-list">
-    {product.rentalInfo?.includes?.map((item, index) => (
-      <li key={index}>{item}</li>
-    ))}
-  </ul>
-</div>
-
+              <div className="info-card">
+                <h4 className="info-header">Our Rental Fee Includes</h4>
+                <ul className="info-list">
+                  {product.rentalInfo?.includes?.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </article>
-
-         
         </section>
       </main>
       <Footer />

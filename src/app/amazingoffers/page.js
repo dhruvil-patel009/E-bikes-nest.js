@@ -13,7 +13,6 @@
 //         <meta name="viewport" content="width=device-width, initial-scale=1" />
 //       </Head>
 
-      
 //       <section className="hero-section">
 //   <h1 className="hero-title">STUDENTS DEAL</h1>
 //   <h2 className="hero-subtitle">Coming Soon....</h2>
@@ -34,7 +33,6 @@
 //     ))}
 //   </div>
 
-  
 // </section>
 
 //     </>
@@ -55,9 +53,6 @@
 //     image: '/images/tshirtebikes.jpeg',
 //   },
 // ];
-
-
-
 
 // 'use client';
 
@@ -169,13 +164,12 @@
 //   },
 // ];
 
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Head from 'next/head';
-import '../styles/amazingoffers.css';
+import Image from "next/image";
+import Head from "next/head";
+import "../styles/amazingoffers.css";
 import { useEffect } from "react";
-
 
 export default function AmazingOffers() {
   const pageTitle = "Student Deals | Beyond Bikes Melbourne | Special Offers";
@@ -185,26 +179,25 @@ export default function AmazingOffers() {
   const pageImage = "https://www.beyondbikes.com.au/images/helmetebikes.jpeg";
 
   useEffect(() => {
-  const elements = document.querySelectorAll(".scroll-animate");
+    const elements = document.querySelectorAll(".scroll-animate");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-        }
-      });
-    },
-    { threshold: 0.2 } // trigger when 20% visible
-  );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          }
+        });
+      },
+      { threshold: 0.2 } // trigger when 20% visible
+    );
 
-  elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => observer.observe(el));
 
-  return () => {
-    elements.forEach((el) => observer.unobserve(el));
-  };
-}, []);
-
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
 
   return (
     <>
@@ -212,7 +205,10 @@ export default function AmazingOffers() {
         {/* Primary SEO Tags */}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta name="keywords" content="student deals Melbourne, beyond bikes offers, e-bike accessories, helmet discount, cap discount, T-shirt discount" />
+        <meta
+          name="keywords"
+          content="student deals Melbourne, beyond bikes offers, e-bike accessories, helmet discount, cap discount, T-shirt discount"
+        />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href={pageUrl} />
@@ -237,33 +233,38 @@ export default function AmazingOffers() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProductCollection",
-              "name": "Student Deals - Beyond Bikes",
-              "description": pageDescription,
-              "url": pageUrl,
-              "image": pageImage,
-              "brand": {
+              name: "Student Deals - Beyond Bikes",
+              description: pageDescription,
+              url: pageUrl,
+              image: pageImage,
+              brand: {
                 "@type": "Brand",
-                "name": "Beyond Bikes Melbourne"
+                name: "Beyond Bikes Melbourne",
               },
-              "offers": foodData.map(item => ({
+              offers: foodData.map((item) => ({
                 "@type": "Offer",
-                "itemOffered": {
+                itemOffered: {
                   "@type": "Product",
-                  "name": item.label,
-                  "image": `https://www.beyondbikes.com.au${item.image}`,
-                  "brand": "Beyond Bikes Melbourne"
+                  name: item.label,
+                  image: `https://www.beyondbikes.com.au${item.image}`,
+                  brand: "Beyond Bikes Melbourne",
                 },
-                "priceCurrency": "AUD",
-                "availability": "https://schema.org/InStock"
-              }))
-            })
+                priceCurrency: "AUD",
+                availability: "https://schema.org/InStock",
+              })),
+            }),
           }}
         />
       </Head>
 
       <section className="hero-section scroll-animate">
         <header>
-          <h1 className="hero-title" style={{color:'rgb(198, 252, 42)',fontFamily:'system-ui'}}>Students Deal</h1>
+          <h1
+            className="hero-title"
+            style={{ color: "rgb(198, 252, 42)", fontFamily: "system-ui" }}
+          >
+            Students Deal
+          </h1>
           <h2 className="hero-subtitle">Coming Soon...</h2>
         </header>
 
@@ -279,7 +280,9 @@ export default function AmazingOffers() {
                   loading="lazy"
                 />
               </div>
-              <p className="rent-now" style={{textTransform:'uppercase'}}>{item.label}</p>
+              <p className="rent-now" style={{ textTransform: "uppercase" }}>
+                {item.label}
+              </p>
             </article>
           ))}
         </div>
@@ -290,16 +293,15 @@ export default function AmazingOffers() {
 
 const foodData = [
   {
-    label: 'Beyond Bikes Caps',
-    image: '/images/cap-ebike.jpeg',
+    label: "Beyond Bikes Caps",
+    image: "/images/cap-ebike.jpeg",
   },
   {
-    label: 'Beyond Bikes Helmet',
-    image: '/images/helmetebikes.jpeg',
+    label: "Beyond Bikes Helmet",
+    image: "/images/helmetebikes.jpeg",
   },
   {
-    label: 'Beyond Bikes T-Shirt',
-    image: '/images/tshirtebikes.jpeg',
+    label: "Beyond Bikes T-Shirt",
+    image: "/images/tshirtebikes.jpeg",
   },
 ];
-

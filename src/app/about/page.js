@@ -1,9 +1,8 @@
-
 // "use client";
 // import Head from 'next/head';
 // import Image from 'next/image';
-// import aboutImg from '../../../public/images/Latest-admin-image.jpg'; 
-// import aboutImg1 from '../../../public/images/Latest-repairer-admin.jpg'; 
+// import aboutImg from '../../../public/images/Latest-admin-image.jpg';
+// import aboutImg1 from '../../../public/images/Latest-repairer-admin.jpg';
 // import aboutthree from '../../../public/images/about-image.jpg';
 // import '../styles/About.css';
 // import Header from '../components/Header';
@@ -45,7 +44,7 @@
 //               <p>
 //                 Beyond Bikes offers reliable and affordable electric bike rentals designed for both everyday riders and food delivery professionals in Melbourne. Whether you are exploring the city or delivering with Uber Eats or DoorDash, our e-bikes provide the perfect blend of power, comfort, and efficiency. We understand the needs of urban commuters - that’s why our bikes are built for performance, long battery life, and convenience. “Freedom to Explore, Power to Move” - that’s the promise we ride on. With flexible rental options, quick support, and service across Melbourne, Beyond Bikes is your go-to for hassle-free electric mobility.
 //               </p>
-              
+
 //             </div>
 //           </div>
 
@@ -65,7 +64,7 @@
 //                 height={500}
 //               />
 //             </div>
-//           </div>         
+//           </div>
 //         </div>
 //       </section>
 //       {pathname === '/about' && <Footer />}
@@ -164,7 +163,7 @@
 //         >
 //           About Us
 //         </h1>
-        
+
 //         <div className="container px-3 px-sm-0">
 //           {/* Section 1 */}
 //           <div className="row align-items-center">
@@ -260,8 +259,6 @@
 //   const MainHeadingTag = pathname === "/about" ? "h1" : "h2";
 //   const SubHeadingTag = pathname === "/about" ? "h2" : "h3";
 
-
-
 // const contentData = [
 //   {
 //     title: "MISSION",
@@ -275,7 +272,7 @@
 //       "At Beyond Bikes Pty Ltd, exceptional service starts with passionate people. We curate a top-quality range of electric bikes and accessories, and offer delivery anywhere in Melbourne with no battery problems. Our roots are local, and our focus is on making electric mobility seamless for every rider.",
 //     linkText: "STORE BACKGROUND",
 //   },
-  
+
 // ]
 
 // const handleArrowClick = () => {
@@ -328,9 +325,9 @@
 //         >
 //           About Us
 //         </MainHeadingTag>
-        
+
 //         <div className="container px-3 px-sm-0">
-          
+
 //           <div className="row align-items-center">
 //             <div className="col-md-6 mb-4 mb-md-0">
 //               <Image
@@ -352,7 +349,6 @@
 //             </div>
 //           </div>
 
-          
 //           <div className="row mt-sm-5 mt-2 align-items-center">
 //             <div className="col-md-6 order-sm-1 order-2">
 //               <SubHeadingTag className="orangeHeading" style={{color:'#1A3B19',fontFamily:'system-ui'}}>STORE BACKGROUND</SubHeadingTag>
@@ -510,21 +506,21 @@
 //         .btn:hover .arrow-icon {
 //           transform: translateX(5px);
 //         }
-        
+
 //         .hero-section {
 //           background-attachment: fixed;
 //         }
-        
+
 //         @media (max-width: 768px) {
 //           .hero-section {
 //             background-attachment: scroll;
 //             min-height: 300px;
 //           }
-          
+
 //           .display-4 {
 //             font-size: 2.5rem !important;
 //           }
-          
+
 //           .display-5 {
 //             font-size: 2rem !important;
 //           }
@@ -585,44 +581,70 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>{currentContent.title} | Beyond Bikes – Melbourne e-Bike Rentals</title>
+        <title>
+          {currentContent.title} | Beyond Bikes – Melbourne e-Bike Rentals
+        </title>
         <meta name="description" content={currentContent.description} />
         <link rel="canonical" href={`${siteUrl}/about`} />
         <meta name="robots" content="index, follow" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="keywords" content="Beyond Bikes, electric bike rentals Melbourne, rent e-bikes, e-bike hire Melbourne, food delivery e-bikes" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Beyond Bikes" />
-<meta property="og:title" content="About Us | Beyond Bikes – Melbourne e-Bike Rentals" />
-<meta property="og:description" content="Learn more about Beyond Bikes – our mission, store background, and why we’re Melbourne’s trusted choice for e-bike rentals." />
-<meta property="og:url" content="https://www.beyondbikes.com.au/about" />
-<meta property="og:image" content="https://www.beyondbikes.com.au/images/EbikesDeliveryAbout-latest.jpg" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="About Us | Beyond Bikes – Melbourne e-Bike Rentals" />
-<meta name="twitter:description" content="Learn more about Beyond Bikes – our mission, store background, and why we’re Melbourne’s trusted choice for e-bike rentals." />
-<meta name="twitter:image" content="https://www.beyondbikes.com.au/images/EbikesDeliveryAbout-latest.jpg" />
-<script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "AboutPage",
-        "mainEntityOfPage": "https://www.beyondbikes.com.au/about",
-        "headline": "About Beyond Bikes – Melbourne e-Bike Rentals",
-        "description":
-          "Beyond Bikes offers reliable and affordable electric bike rentals designed for everyday riders and food delivery professionals in Melbourne.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Beyond Bikes",
-          "url": "https://www.beyondbikes.com.au",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.beyondbikes.com.au/images/logo.png"
-          }
-        }
-      }),
-    }}
-  />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="keywords"
+          content="Beyond Bikes, electric bike rentals Melbourne, rent e-bikes, e-bike hire Melbourne, food delivery e-bikes"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Beyond Bikes" />
+        <meta
+          property="og:title"
+          content="About Us | Beyond Bikes – Melbourne e-Bike Rentals"
+        />
+        <meta
+          property="og:description"
+          content="Learn more about Beyond Bikes – our mission, store background, and why we’re Melbourne’s trusted choice for e-bike rentals."
+        />
+        <meta
+          property="og:url"
+          content="https://www.beyondbikes.com.au/about"
+        />
+        <meta
+          property="og:image"
+          content="https://www.beyondbikes.com.au/images/EbikesDeliveryAbout-latest.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="About Us | Beyond Bikes – Melbourne e-Bike Rentals"
+        />
+        <meta
+          name="twitter:description"
+          content="Learn more about Beyond Bikes – our mission, store background, and why we’re Melbourne’s trusted choice for e-bike rentals."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.beyondbikes.com.au/images/EbikesDeliveryAbout-latest.jpg"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AboutPage",
+              mainEntityOfPage: "https://www.beyondbikes.com.au/about",
+              headline: "About Beyond Bikes – Melbourne e-Bike Rentals",
+              description:
+                "Beyond Bikes offers reliable and affordable electric bike rentals designed for everyday riders and food delivery professionals in Melbourne.",
+              publisher: {
+                "@type": "Organization",
+                name: "Beyond Bikes",
+                url: "https://www.beyondbikes.com.au",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.beyondbikes.com.au/images/logo.png",
+                },
+              },
+            }),
+          }}
+        />
       </Head>
 
       {pathname !== "/" && <Header />}
@@ -647,7 +669,9 @@ export default function About() {
           }}
         ></div>
         <div className="container position-relative" style={{ zIndex: 2 }}>
-          <MainHeadingTag className="display-4 text-center fw-bold mb-0">About Us</MainHeadingTag>
+          <MainHeadingTag className="display-4 text-center fw-bold mb-0">
+            About Us
+          </MainHeadingTag>
         </div>
       </section>
 
@@ -673,15 +697,26 @@ export default function About() {
 
             {/* TEXT BLOCK */}
             <div className="col-lg-6">
-              <div className={`ps-lg-4 content-wrapper ${fade ? "fade-out" : "fade-in"}`}>
-                <SubHeadingTag className="fs-3 fw-bold mb-2" style={{color:'#1A3B19',fontFamily:'system-ui'}}>
+              <div
+                className={`ps-lg-4 content-wrapper ${
+                  fade ? "fade-out" : "fade-in"
+                }`}
+              >
+                <SubHeadingTag
+                  className="fs-3 fw-bold mb-2"
+                  style={{ color: "#1A3B19", fontFamily: "system-ui" }}
+                >
                   {currentContent.title}
                 </SubHeadingTag>
                 <p className="mb-2">{currentContent.description}</p>
                 <button
                   onClick={handleArrowClick}
                   className="btn btn-link p-0 text-decoration-none d-inline-flex align-items-center"
-                  style={{color:'#1A3B19',fontWeight:'bold',fontFamily:'system-ui'}}
+                  style={{
+                    color: "#1A3B19",
+                    fontWeight: "bold",
+                    fontFamily: "system-ui",
+                  }}
                 >
                   <span className="me-2">{currentContent.linkText}</span>
                   <svg

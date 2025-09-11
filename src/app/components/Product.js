@@ -9,7 +9,7 @@
 //   </header>
 //   <div className="row">
 //     {productsData.map((product) => (
-//       <div className="col-6 col-md-3 mb-4 text-center shadow-hover" key={product.id} 
+//       <div className="col-6 col-md-3 mb-4 text-center shadow-hover" key={product.id}
 // >
 //         <article className="product-card" itemScope itemType="https://schema.org/Product" style={{
 //     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1)",
@@ -49,11 +49,12 @@
 // }
 
 "use client";
-import { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/ProductSection.css';
-import productsData from '../json/products.json';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/ProductSection.css";
+import productsData from "../json/products.json";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const tabs = ["Lastest Products", "Top Rating", "Best Sellers"];
 
@@ -92,8 +93,15 @@ export default function ProductTabs() {
           {tabs.map((tab) => (
             <li className="nav-item" key={tab}>
               <button
-                className={`nav-link fw-bold ${activeTab === tab ? 'active border-bottom border-2 border-danger' : ''}`}
-                style={{ color: activeTab === tab ? '#000' : '#555', background: 'none' }}
+                className={`nav-link fw-bold ${
+                  activeTab === tab
+                    ? "active border-bottom border-2 border-danger"
+                    : ""
+                }`}
+                style={{
+                  color: activeTab === tab ? "#000" : "#555",
+                  background: "none",
+                }}
                 onClick={() => setActiveTab(tab)}
               >
                 {tab.toUpperCase()}
@@ -105,27 +113,27 @@ export default function ProductTabs() {
 
       <div className="row">
         {filteredProducts.map((product) => (
-          <div className="col-6 col-md-3 mb-4 text-center shadow-hover" key={product.id}>
+          <div
+            className="col-6 col-md-3 mb-4 text-center shadow-hover"
+            key={product.id}
+          >
             <article
               className="product-card"
               style={{
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1)",
- borderRadius: "0.5rem",
-padding: "1rem",
-backgroundColor: "#fff",
-transition: "transform 0.2s ease, box-shadow 0.2s ease"
+                boxShadow:
+                  "0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1)",
+                borderRadius: "0.5rem",
+                padding: "1rem",
+                backgroundColor: "#fff",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
               }}
               itemScope
               itemType="https://schema.org/Product"
             >
-              <span
-                className="sale-badge"
-                
-                aria-hidden="true"
-              >
+              <span className="sale-badge" aria-hidden="true">
                 Sale
               </span>
-              <img
+              <Image
                 src={product.image}
                 alt={`Image of ${product.name}`}
                 className="img-fluid product-image"
@@ -134,8 +142,15 @@ transition: "transform 0.2s ease, box-shadow 0.2s ease"
                 height="200"
                 itemProp="image"
               />
-              <h3 className="product-title" itemProp="name">{product.name}</h3>
-              <p className="product-price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+              <h3 className="product-title" itemProp="name">
+                {product.name}
+              </h3>
+              <p
+                className="product-price"
+                itemProp="offers"
+                itemScope
+                itemType="https://schema.org/Offer"
+              >
                 <span itemProp="price">{product.price}</span>
                 <meta itemProp="priceCurrency" content="USD" />
                 <span className="old-price">{product.oldPrice}</span>

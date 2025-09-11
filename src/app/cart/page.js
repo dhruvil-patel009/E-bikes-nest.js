@@ -1,47 +1,48 @@
 "use client";
 
-import { useState } from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { useState } from "react";
+import Head from "next/head";
+import Image from "next/image";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Link from "next/link";
 
 const cartItemsData = [
   {
     id: 1,
-    title: 'Fifa 19',
-    platform: 'PS4',
+    title: "Fifa 19",
+    platform: "PS4",
     price: 44.0,
     quantity: 2,
-    image: '/images/e-bike-blue.jpg',
+    image: "/images/e-bike-blue.jpg",
   },
   {
     id: 2,
-    title: 'Glacier White 500GB',
-    platform: 'PS4',
+    title: "Glacier White 500GB",
+    platform: "PS4",
     price: 249.99,
     quantity: 1,
-    image: '/images/e-bike-red.jpg',
+    image: "/images/e-bike-red.jpg",
   },
   {
     id: 3,
-    title: 'Platinum Headset',
-    platform: 'PS4',
+    title: "Platinum Headset",
+    platform: "PS4",
     price: 119.99,
     quantity: 1,
-    image: '/images/e-bike-green.jpg',
+    image: "/images/e-bike-green.jpg",
   },
 ];
 
 export default function ShoppingCart() {
   const [cartItems, setCartItems] = useState(cartItemsData);
-  const [promoCode, setPromoCode] = useState('');
+  const [promoCode, setPromoCode] = useState("");
   const [shippingCost] = useState(5);
 
   const handleQuantity = (id, amount) => {
-    setCartItems(prevItems =>
-      prevItems.map(item =>
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
         item.id === id
           ? { ...item, quantity: Math.max(1, item.quantity + amount) }
           : item
@@ -49,18 +50,24 @@ export default function ShoppingCart() {
     );
   };
 
-  const handleRemove = id => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+  const handleRemove = (id) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  const itemsTotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const itemsTotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
   const total = itemsTotal + shippingCost;
 
   return (
     <>
       <Head>
         <title>Shopping Cart | YourStore</title>
-        <meta name="description" content="View and manage your shopping cart items. Apply discounts and proceed to secure checkout." />
+        <meta
+          name="description"
+          content="View and manage your shopping cart items. Apply discounts and proceed to secure checkout."
+        />
       </Head>
 
       <Header />
@@ -70,27 +77,51 @@ export default function ShoppingCart() {
 
         <div className="row gy-4">
           <div className="col-lg-8">
-            {cartItems.map(item => (
-              <div className="d-flex align-items-center justify-content-between p-3 bg-white rounded shadow-sm mb-3" key={item.id}>
+            {cartItems.map((item) => (
+              <div
+                className="d-flex align-items-center justify-content-between p-3 bg-white rounded shadow-sm mb-3"
+                key={item.id}
+              >
                 <div className="d-flex align-items-center gap-3">
-                  <Image src={item.image} alt={item.title} width={80} height={80} className="rounded" />
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={80}
+                    height={80}
+                    className="rounded"
+                  />
                   <div>
                     <h6 className="mb-1">{item.title}</h6>
                     <small className="text-muted">{item.platform}</small>
                     <br />
-                    <button className="btn btn-link p-0 text-danger" onClick={() => handleRemove(item.id)}>Remove</button>
+                    <button
+                      className="btn btn-link p-0 text-danger"
+                      onClick={() => handleRemove(item.id)}
+                    >
+                      Remove
+                    </button>
                   </div>
                 </div>
 
                 <div className="d-flex align-items-center gap-2">
-                  <button className="btn btn-outline-dark btn-sm" onClick={() => handleQuantity(item.id, -1)}>
-                    {/* <i className="bi bi-dash"></i> */}
-                    -   
+                  <button
+                    className="btn btn-outline-dark btn-sm"
+                    onClick={() => handleQuantity(item.id, -1)}
+                  >
+                    {/* <i className="bi bi-dash"></i> */}-
                   </button>
-                  <input type="text" readOnly value={item.quantity} className="form-control text-center" style={{ width: '50px' }} />
-                  <button className="btn btn-outline-dark btn-sm" onClick={() => handleQuantity(item.id, 1)}>
-                    {/* <i className="bi bi-plus"></i> */}
-                    +
+                  <input
+                    type="text"
+                    readOnly
+                    value={item.quantity}
+                    className="form-control text-center"
+                    style={{ width: "50px" }}
+                  />
+                  <button
+                    className="btn btn-outline-dark btn-sm"
+                    onClick={() => handleQuantity(item.id, 1)}
+                  >
+                    {/* <i className="bi bi-plus"></i> */}+
                   </button>
                 </div>
 
@@ -104,9 +135,12 @@ export default function ShoppingCart() {
                 </div>
               </div>
             ))}
-            <a href="/products" className="text-decoration-none mt-4 d-inline-block">
+            <Link
+              href="/products"
+              className="text-decoration-none mt-4 d-inline-block"
+            >
               <i className="bi bi-arrow-left"></i> Continue Shopping
-            </a>
+            </Link>
           </div>
 
           <div className="col-lg-4">
@@ -132,7 +166,7 @@ export default function ShoppingCart() {
                     className="form-control"
                     placeholder="Enter your code"
                     value={promoCode}
-                    onChange={e => setPromoCode(e.target.value)}
+                    onChange={(e) => setPromoCode(e.target.value)}
                   />
                   <button className="btn btn-danger">Apply</button>
                 </div>
@@ -142,7 +176,9 @@ export default function ShoppingCart() {
                 <span>Total</span>
                 <span>£{total.toFixed(2)}</span>
               </div>
-              <button className="btn btn-primary w-100 fw-semibold">Proceed to Checkout</button>
+              <button className="btn btn-primary w-100 fw-semibold">
+                Proceed to Checkout
+              </button>
             </div>
           </div>
         </div>
