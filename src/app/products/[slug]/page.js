@@ -266,6 +266,13 @@ export default function ProductDetailsPage() {
             </section>
             <CheckoutButton amount={6500} />
 
+            <Elements stripe={stripePromise}>
+              <GooglePayInner amountCents={6000} currency="aud" />
+            </Elements>
+            <Elements stripe={stripePromise}>
+              <ApplePayInner amountCents={6000} currency="aud" />
+            </Elements>
+
             {/* Wrap payment button */}
             {/* <Elements stripe={stripePromise}>
               <GooglePayInner amountCents={6000} currency="aud" />
