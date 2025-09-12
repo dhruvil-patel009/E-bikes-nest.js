@@ -355,6 +355,13 @@ export default function ProductDetailsPage() {
           </div>
         </div>
 
+         <Elements stripe={stripePromise}>
+                      <GooglePayInner amountCents={6000} currency="aud" />
+                    </Elements>
+                    <Elements stripe={stripePromise}>
+                      <ApplePayInner amountCents={6000} currency="aud" />
+                    </Elements>
+
         {/* Product Description */}
         <section className="container py-4" aria-labelledby="description-title">
           <h2
