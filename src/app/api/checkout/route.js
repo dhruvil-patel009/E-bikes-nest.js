@@ -40,6 +40,12 @@
 //   }
 // }
 
+// 
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////
 // src/app/api/checkout/route.js
 import Stripe from "stripe";
 
@@ -49,29 +55,22 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 export async function POST(req) {
   try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card", "link"], // Apple Pay & GPay auto included
-      mode: "payment",
-      customer_email: "Dhruvilpatel200199@gmail.com",
-      line_items: [
-        {
-          price_data: {
-            currency: "aud",
-            product_data: {
-              name: "Pure kit",
-            },
-            unit_amount: 6500, // $65
-          },
-          quantity: 1,
-        },
-      ],
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/cancel`,
-      invoice_creation: { enabled: true },
+    const { amount } = await req.json();
+
+    // Create a PaymentIntent for one-time payment
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount || 2000, // in cents (2000 = $20)
+      currency: "usd",
+      automatic_payment_methods: {
+        enabled: true, // enables Card, Google Pay, Apple Pay automatically
+      },
     });
 
-    return Response.json({ id: session.id });
-  } catch (err) {
-    return Response.json({ error: err.message }, { status: 500 });
+    return new Response(JSON.stringify({ clientSecret: paymentIntent.client_secret }), {
+      status: 200,
+    });
+  } catch (error) {
+    console.error("Stripe error:", error);
+    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
 }

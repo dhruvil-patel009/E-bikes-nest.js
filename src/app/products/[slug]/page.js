@@ -239,105 +239,14 @@ export default function ProductDetailsPage() {
       ))}
   </div>
 </section>
-            <CheckoutButton amount={6500} />
 
-            <Elements stripe={stripePromise}>
-              <GooglePayInner amountCents={6000} currency="aud" />
-            </Elements>
-            <Elements stripe={stripePromise}>
-              <ApplePayInner amountCents={6000} currency="aud" />
-            </Elements>
-
-            {/* Wrap payment button */}
-            {/* <Elements stripe={stripePromise}>
-              <GooglePayInner amountCents={6000} currency="aud" />
-            </Elements>
-            <Elements stripe={stripePromise}>
-              <ApplePayInner amountCents={6000} currency="aud" />
-            </Elements>
-            <button
-              className="ms-3 btn btn-warning"
-              style={{ background: "#ff8c00", border: "none" }}
-              onClick={handlePayNowbtn}
-              aria-label="Pay Now"
-            >
-              Pay Now
-            </button> */}
-
-            {/* Payment Modal */}
-            {/* {showPayModal && (
-              <div
-                className="modal fade show"
-                style={{
-                  display: "block",
-                  opacity: 1,
-                  transition: "opacity 0.3s ease",
-                }}
-                aria-labelledby="paymentModalLabel"
-                aria-hidden="false"
-              >
-                <div
-                  className="modal-backdrop fade show"
-                  style={{
-                    backdropFilter: "blur(5px)",
-                    position: "fixed",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    zIndex: -1,
-                    backgroundColor: "rgba(0,0,0,0.8)",
-                  }}
-                ></div>
-
-                <div
-                  className="modal-dialog d-flex justify-content-center align-items-center"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <div className="modal-content p-4 rounded-3">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="paymentModalLabel">
-                        Choose Payment Method
-                      </h5>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        onClick={handleClose}
-                        aria-label="Close"
-                      ></button>
-                    </div>
-
-                    <div className="modal-body text-center">
-                      
-                      <div className="mb-3">
-                        <Elements stripe={stripePromise}>
-                          <GooglePayInner amount={6500} currency="aud" />
-                        </Elements>
-                        <Elements stripe={stripePromise}>
-                          <ApplePayInner amount={1200} currency="aud" />
-                        </Elements>
-                      </div>
-
-                     
-                      <div className="mt-3">
-                        <CheckoutButton amount={6500} />
-                      </div>
-                    </div>
-
-                    <div className="modal-footer">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={handleClose}
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )} */}
-
+<button
+  className="btn btn-primary mt-4 w-50"
+  onClick={() => router.push("/checkout")}
+>
+  Checkout Now
+</button>
+           
             {showModal && (
               <div
                 className="modal fade show"
