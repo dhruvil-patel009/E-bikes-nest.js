@@ -123,7 +123,7 @@ import Typewriter from "typewriter-effect";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Head from "next/head";
-import "../styles/Hero.css";
+import '../styles/Hero.css';
 
 export default function Hero() {
   const router = useRouter();
@@ -176,33 +176,21 @@ export default function Hero() {
           content="electric bike rental Melbourne, e-bike hire Melbourne, Beyond Bikes Australia, delivery e-bikes Melbourne, rent e-bikes"
         />
         <link rel="canonical" href="https://www.beyondbikes.com.au/" />
-        <meta
-          property="og:title"
-          content="Beyond Bikes - Electric Bike Rentals Melbourne"
-        />
+        <meta property="og:title" content="Beyond Bikes - Electric Bike Rentals Melbourne" />
         <meta
           property="og:description"
           content="Flexible electric bike rentals in Melbourne. Freedom to explore, power to move with Beyond Bikes."
         />
-        <meta
-          property="og:image"
-          content="https://www.beyondbikes.com.au/images/02-07-2025-Latest-Hero-1.jpg"
-        />
+        <meta property="og:image" content="https://www.beyondbikes.com.au/images/02-07-2025-Latest-Hero-1.jpg" />
         <meta property="og:url" content="https://www.beyondbikes.com.au/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Beyond Bikes - Electric Bike Rentals Melbourne"
-        />
+        <meta name="twitter:title" content="Beyond Bikes - Electric Bike Rentals Melbourne" />
         <meta
           name="twitter:description"
           content="Rent quiet, powerful electric bikes in Melbourne with Beyond Bikes. Book now."
         />
-        <meta
-          name="twitter:image"
-          content="https://www.beyondbikes.com.au/images/02-07-2025-Latest-Hero-1.jpg"
-        />
+        <meta name="twitter:image" content="https://www.beyondbikes.com.au/images/02-07-2025-Latest-Hero-1.jpg" />
 
         {/* ✅ Structured Data */}
         <script
@@ -212,8 +200,7 @@ export default function Hero() {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "Beyond Bikes",
-              image:
-                "https://www.beyondbikes.com.au/images/02-07-2025-Latest-Hero-1.jpg",
+              image: "https://www.beyondbikes.com.au/images/02-07-2025-Latest-Hero-1.jpg",
               "@id": "https://www.beyondbikes.com.au/",
               url: "https://www.beyondbikes.com.au/",
               telephone: "+61422032961",
@@ -242,9 +229,7 @@ export default function Hero() {
         role="banner"
         aria-label="Electric bike rentals in Melbourne—quiet, powerful, and flexible hire"
       >
-        <h1 className="visually-hidden">
-          <strong>Beyond Bikes</strong>
-        </h1>
+      <h1 className="visually-hidden"><strong>Beyond Bikes</strong></h1>
         {/* Hidden but SEO indexed */}
         <Image
           src={images[currentImageIndex]}
@@ -272,7 +257,7 @@ export default function Hero() {
           >
             <div
               className="loader"
-              style={{ width: "4rem", height: "4rem", color: "#1A3B19" }}
+              style={{ width: "4rem", height: "4rem", color:'#1A3B19' }}
               role="status"
             >
               <span className="visually-hidden">Loading...</span>
@@ -283,19 +268,22 @@ export default function Hero() {
         <div className="container position-relative z-2 mt-sm-5 mt-2 pt-5">
           <div className="row mt-sm-0 mt-4">
             <div className="col-12 col-md-6">
-              <h2 className="display-5 mb-4" style={{ color: "#C6FC2A" }}>
-                <strong className="fw-bold">
-                  <Typewriter
-                    key={currentImageIndex + "-title"}
-                    options={{
-                      strings: [titles[currentImageIndex]],
-                      autoStart: true,
-                      loop: false,
-                      delay: 50,
-                      deleteSpeed: 20,
-                      pauseFor: 3500,
-                    }}
-                  />
+              <h2
+                className="display-5 mb-4"
+                style={{ color: "#C6FC2A" }}
+              >
+              <strong className="fw-bold">
+                <Typewriter
+                  key={currentImageIndex + "-title"}
+                  options={{
+                    strings: [titles[currentImageIndex]],
+                    autoStart: true,
+                    loop: false,
+                    delay: 50,
+                    deleteSpeed: 20,
+                    pauseFor: 3500,
+                  }}
+                />
                 </strong>
               </h2>
               <h3 className="fw-600 mb-4" style={{ fontStyle: "italic" }}>
@@ -306,6 +294,8 @@ export default function Hero() {
                 className="rent-now px-4 py-2 mt-3"
                 aria-label="Book your Beyond Bikes rental in Melbourne"
                 title="Beyond Bikes - Rent an e-bike in Melbourne"
+                
+                
               >
                 RENT NOW <span className="arrow">→</span>
               </a>

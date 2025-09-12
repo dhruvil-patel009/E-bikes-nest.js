@@ -538,7 +538,7 @@ export default function CartoonDetailsPage() {
 
             <div className="d-sm-flex thumbnail-gallery mt-3">
               {Object.keys(images).map((color) => (
-                <Image
+                <img
                   key={color}
                   src={images[color]}
                   alt={`Cartoon Bikes ${color} view`}
