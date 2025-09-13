@@ -54,3 +54,23 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Contact Info Icons */
+#contact-info .rounded-circle {
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+#contact-info .rounded-circle:hover {
+  transform: scale(1.15);
+  background-color: #c6fc2a !important; /* gold circle on hover */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+#contact-info .rounded-circle i {
+  transition: color 0.3s ease;
+}
+
+#contact-info .rounded-circle:hover i {
+  color: #1a3b19; /* deep green icon on hover */
+}

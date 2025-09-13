@@ -98,3 +98,34 @@
     max-height: 120px;
   }
 }
+
+.animated-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px; /* space for underline */
+}
+
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;                /* underline starts at the middle */
+  height: 4px;
+  width: 0;
+  background-color: #1A3B19;
+  border-radius: 2px;
+  transform: translateX(-50%); /* keep underline centered */
+  animation: underlineExpand 2s ease-in-out infinite;
+}
+
+@keyframes underlineExpand {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;   /* expands fully but stays centered */
+  }
+  100% {
+    width: 0;
+  }
+}

@@ -2,137 +2,32 @@
   {
     "id": "cartoon-bike",
     "name": "E-bike 6-8h",
-    "slug": "cartoon-bike",
-    "sku": "CB-EBIKE-001",
-    "price": {
-      "current": 60,
-      "original": 70,
-      "currency": "AUD",
-      "stripeAmount": 6500
-    },
+    "price": 60,
+    "oldPrice": 70,
+    "currency": "AUD",
     "images": {
       "front": "/images/CartoonCycleProductdetailsFrontBlur.jpg",
       "back": "/images/CartoonCycleProductdetailsBackBlur.jpg",
       "middle": "/images/CartoonCycleProductdetailsAngleBlur.jpg",
       "battery": "/images/CartoonCycleProductdetailsWholeBlur.jpg"
     },
-    "specifications": {
-      "highlights": [
-        { "icon": "bi-battery-full", "label": "Battery Hours", "value": "6-8 hours" },
-        { "icon": "bi-lightning-charge", "label": "Motor", "value": "500W" },
-        { "icon": "bi-clock", "label": "Battery Life", "value": "48V 50A" },
-        { "icon": "bi-wrench", "label": "Maintenance", "value": "Included" }
-      ],
-      "tabs": {
-        "features": {
-          "display": "Multifunctional LED display, clearly visible under sunlight.",
-          "lighting": [
-            "Front high-brightness headlight with wide aperture",
-            "Rear light with laser projection for night safety"
-          ],
-          "holder": "USB port (2.1A output)"
-        },
-        "safety": {
-          "safety": [
-            "Smart anti-theft remote (alarm + keyless start)",
-            "NFC smart unlock"
-          ],
-          "brake": "Hydraulic disc brakes",
-          "hours": "6–8 hours"
-        },
-        "performance": {
-          "speed": ["Gear 1: 25 km/h", "Gear 2: 35 km/h", "Gear 3: 45 km/h"],
-          "life": "48V 50A"
-        }
-      }
-    },
-    "insurance": {
-      "covered": ["✔ Insurance only covers theft of battery."],
-      "notCovered": ["✘ No accident compensation.", "✘ No third-party costs insured."]
-    },
-    "rentalInfo": {
-      "documents": [
-        "Name",
-        "Phone Number",
-        "Address & Unit Number",
-        "Email",
-        "Valid Visa Grant",
-        "Passport"
-      ],
-      "includes": ["Delivery bag", "Locks (2)", "Helmet", "Charger", "Basic maintenance"]
-    },
+    "specs": [
+      { "icon": "bi bi-battery-full", "label": "Battery Life", "value": "8-10h" },
+      { "icon": "bi bi-lightning-charge-fill", "label": "Motor", "value": "500W" },
+      { "icon": "bi bi-clock-history", "label": "Charging Time", "value": "4-5h" },
+      { "icon": "bi bi-tools", "label": "Maintenance", "value": "Included" }
+    ],
+    "description": "This e-bike offers excellent battery life, a strong motor, and hassle-free maintenance. Perfect for city rides and rentals.",
     "socialLinks": {
       "instagram": "https://www.instagram.com/beyondbikes_vic/",
       "google": "https://g.co/kgs/66Atysa",
-      "phone": "tel:+61422032961"
-    }
-  },
-  {
-    "id": "cali-cruiser",
-    "name": "Cali Cruiser E-Bike",
-    "slug": "cali-cruiser",
-    "sku": "CC-EBIKE-001",
-    "price": {
-      "current": 65,
-      "original": 70,
-      "currency": "AUD",
-      "stripeAmount": 7000
+      "call": "tel:+61422032961"
     },
-    "images": {
-      "front": "/images/BlueCycleProductDetailsFront.jpg",
-      "back": "/images/BlueCycleProductDetailsAngleBlur.jpg",
-      "middle": "/images/BlueCycleProductDetailsFrontLatest.jpg",
-      "battery": "/images/BlueCycleProductDetailsBackBlur.jpg"
-    },
-    "specifications": {
-      "highlights": [
-        { "icon": "bi-battery-full", "label": "Battery Hours", "value": "8-10 hours" },
-        { "icon": "bi-lightning-charge", "label": "Motor", "value": "500W" },
-        { "icon": "bi-clock", "label": "Battery Life", "value": "48V 70A" },
-        { "icon": "bi-wrench", "label": "Maintenance", "value": "Included" }
-      ],
-      "tabs": {
-        "features": {
-          "display": "Multifunctional LED display, clearly visible under sunlight.",
-          "lighting": [
-            "Front high-brightness headlight with wide aperture",
-            "Rear light with laser projection for night safety"
-          ],
-          "holder": "USB port (2.1A output)"
-        },
-        "safety": {
-          "safety": [
-            "Smart anti-theft remote (alarm + keyless start)",
-            "NFC smart unlock"
-          ],
-          "brake": "Hydraulic disc brakes",
-          "hours": "8–10 hours"
-        },
-        "performance": {
-          "speed": ["Gear 1: 25 km/h", "Gear 2: 35 km/h", "Gear 3: 45 km/h"],
-          "life": "48V 70A"
-        }
-      }
-    },
-    "insurance": {
-      "covered": ["✔ Insurance only covers theft of battery."],
-      "notCovered": ["✘ No accident compensation.", "✘ No third-party costs insured."]
-    },
-    "rentalInfo": {
-      "documents": [
-        "Name",
-        "Phone Number",
-        "Address & Unit Number",
-        "Email",
-        "Valid Visa Grant",
-        "Passport"
-      ],
-      "includes": ["Delivery bag", "Locks (2)", "Helmet", "Charger", "Basic maintenance"]
-    },
-    "socialLinks": {
-      "instagram": "https://www.instagram.com/beyondbikes_vic/",
-      "google": "https://g.co/kgs/66Atysa",
-      "phone": "tel:+61422032961"
+    "seo": {
+      "title": "E-bikes-6-8h Bikes | Beyond Bikes Electric Bike",
+      "description": "Explore the Cartoon Bikes E-bike 6-8h by Beyond Bikes. Learn specifications, rental info, insurance, and battery details. Book your ride now!",
+      "keywords": "Beyond Bikes, Cartoon Bikes, electric bike, e-bike, rental, battery life, mid-drive, all-terrain",
+      "canonical": "https://yourdomain.com/product/cartoon"
     }
   }
 ]

@@ -404,20 +404,6 @@ import Footer from "../components/Footer";
 import Instagram from "../../../public/images/instagram-latest.svg";
 import Google from "../../../public/images/google-latest.svg";
 import Call from "../../../public/images/phone-latest.svg";
-import { loadStripe } from "@stripe/stripe-js";
-import GooglePayInner from "../components/GooglePayInner.js";
-import ApplePayInner from "../components/ApplePayInner.js";
-import {
-  Elements,
-  PaymentRequestButtonElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
-import CheckoutButton from "../components/CheckoutButton";
-
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
 
 const images = {
   front: "/images/CartoonCycleProductdetailsFrontBlur.jpg",
@@ -431,12 +417,11 @@ export default function CartoonDetailsPage() {
   const [quantity, setQuantity] = useState(1);
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
-  const [showPayModal, setShowPayModal] = useState(false);
 
-  const handlePayNowbtn = () => {
-    setShowPayModal(true);
+  const handlePayNow = () => {
+    // Redirect to checkout page with query params for currency & price
+    router.push("/checkout?currency=aud&price=65");
   };
-
   const handleClick = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
@@ -450,36 +435,6 @@ export default function CartoonDetailsPage() {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);
-
-  // just inside your component function (CartoonDetailsPage)
-  // const stripePromise = loadStripe(
-  //   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-  // );
-
-  const handlePayNow = async (qty = 1) => {
-    try {
-      // call server to create session
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ quantity: qty }),
-      });
-
-      const data = await res.json();
-      if (data.error) {
-        console.error("Checkout creation error:", data.error);
-        alert("Payment failed to initialize. Check console.");
-        return;
-      }
-
-      const stripe = await stripePromise;
-      const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
-      if (error) console.error("Stripe redirect error:", error);
-    } catch (err) {
-      console.error(err);
-      alert("Payment error — see console.");
-    }
-  };
 
   return (
     <>
@@ -610,6 +565,134 @@ export default function CartoonDetailsPage() {
                 </div>
               </div>
             </section>
+
+            {/* <section class="mt-3" itemProp="description">
+  <h2 class="fw-bold text-orange mb-3">Specifications</h2>
+
+  <div class="accordion" id="specAccordion">
+  
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="headingSpeed">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpeed" aria-expanded="false" aria-controls="collapseSpeed">
+          <strong>Speed Modes</strong>
+        </button>
+      </h3>
+      <div id="collapseSpeed" class="accordion-collapse collapse" aria-labelledby="headingSpeed" data-bs-parent="#specAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li>Gear 1: 25 km/h</li>
+            <li>Gear 2: 35 km/h</li>
+            <li>Gear 3: 45 km/h</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="headingDisplay">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDisplay" aria-expanded="false" aria-controls="collapseDisplay">
+          <strong>Display</strong>
+        </button>
+      </h3>
+      <div id="collapseDisplay" class="accordion-collapse collapse" aria-labelledby="headingDisplay" data-bs-parent="#specAccordion">
+        <div class="accordion-body">
+          Multifunctional LED display, clearly visible under sunlight.
+        </div>
+      </div>
+    </div>
+
+  
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="headingLight">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLight" aria-expanded="false" aria-controls="collapseLight">
+          <strong>Lighting</strong>
+        </button>
+      </h3>
+      <div id="collapseLight" class="accordion-collapse collapse" aria-labelledby="headingLight" data-bs-parent="#specAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li>Front high-brightness headlight with wide aperture</li>
+            <li>Rear light with laser projection for night safety</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="headingHolder">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHolder" aria-expanded="false" aria-controls="collapseHolder">
+          <strong>Phone Holder</strong>
+        </button>
+      </h3>
+      <div id="collapseHolder" class="accordion-collapse collapse" aria-labelledby="headingHolder" data-bs-parent="#specAccordion">
+        <div class="accordion-body">
+          USB port (2.1A output)
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="headingSafety">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSafety" aria-expanded="false" aria-controls="collapseSafety">
+          <strong>Safety System</strong>
+        </button>
+      </h3>
+      <div id="collapseSafety" class="accordion-collapse collapse" aria-labelledby="headingSafety" data-bs-parent="#specAccordion">
+        <div class="accordion-body">
+          <ul>
+            <li>Smart anti-theft remote (alarm + keyless start)</li>
+            <li>NFC smart unlock</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="headingBrake">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBrake" aria-expanded="false" aria-controls="collapseBrake">
+          <strong>Braking System</strong>
+        </button>
+      </h3>
+      <div id="collapseBrake" class="accordion-collapse collapse" aria-labelledby="headingBrake" data-bs-parent="#specAccordion">
+        <div class="accordion-body">
+          Hydraulic disc brakes
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="headingHours">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHours" aria-expanded="false" aria-controls="collapseHours">
+          <strong>Battery Hours</strong>
+        </button>
+      </h3>
+      <div id="collapseHours" class="accordion-collapse collapse" aria-labelledby="headingHours" data-bs-parent="#specAccordion">
+        <div class="accordion-body">
+          6–8 hours
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="accordion-item">
+      <h3 class="accordion-header" id="headingLife">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLife" aria-expanded="false" aria-controls="collapseLife">
+          <strong>Battery Life</strong>
+        </button>
+      </h3>
+      <div id="collapseLife" class="accordion-collapse collapse" aria-labelledby="headingLife" data-bs-parent="#specAccordion">
+        <div class="accordion-body">
+          48V 50A
+        </div>
+      </div>
+    </div>
+  </div>
+</section> */}
 
             <section
               className="mt-3"
@@ -846,98 +929,24 @@ export default function CartoonDetailsPage() {
               <span className="text-light">Rent Now</span>
             </button>
 
-            <CheckoutButton amount={6500} />
-
-            {/* Wrap payment button */}
-            <Elements stripe={stripePromise}>
-              <GooglePayInner amountCents={6000} currency="aud" />
-            </Elements>
-            <Elements stripe={stripePromise}>
-              <ApplePayInner amountCents={6000} currency="aud" />
-            </Elements>
-            <button
-              className="ms-3 btn btn-warning"
-              style={{ background: "#ff8c00", border: "none" }}
-              onClick={handlePayNowbtn}
-              aria-label="Pay Now"
-            >
-              Pay Now
-            </button>
-
-            {/* Payment Modal */}
-            {showPayModal && (
-              <div
-                className="modal fade show"
+            <div style={{ padding: 24 }}>
+              <h1>Pure Kit</h1>
+              <p>Price: A$65.00</p>
+              <button
                 style={{
-                  display: "block",
-                  opacity: 1,
-                  transition: "opacity 0.3s ease",
+                  padding: "12px 24px",
+                  backgroundColor: "#6772e5",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 6,
+                  cursor: "pointer",
+                  fontSize: 16,
                 }}
-                aria-labelledby="paymentModalLabel"
-                aria-hidden="false"
+                onClick={handlePayNow}
               >
-                {/* Backdrop */}
-                <div
-                  className="modal-backdrop fade show"
-                  style={{
-                    backdropFilter: "blur(5px)",
-                    position: "fixed",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    zIndex: -1,
-                    backgroundColor: "rgba(0,0,0,0.8)",
-                  }}
-                ></div>
-
-                <div
-                  className="modal-dialog d-flex justify-content-center align-items-center"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <div className="modal-content p-4 rounded-3">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="paymentModalLabel">
-                        Choose Payment Method
-                      </h5>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        onClick={handleClose}
-                        aria-label="Close"
-                      ></button>
-                    </div>
-
-                    <div className="modal-body text-center">
-                      {/* Google Pay Option */}
-                      <div className="mb-3">
-                        <Elements stripe={stripePromise}>
-                          <GooglePayInner amount={6500} currency="aud" />
-                        </Elements>
-                        <Elements stripe={stripePromise}>
-                          <ApplePayInner amount={1200} currency="aud" />
-                        </Elements>
-                      </div>
-
-                      {/* Card Option */}
-                      <div className="mt-3">
-                        <CheckoutButton amount={6500} />
-                      </div>
-                    </div>
-
-                    <div className="modal-footer">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={handleClose}
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+                Pay Now
+              </button>
+            </div>
 
             {showModal && (
               <div

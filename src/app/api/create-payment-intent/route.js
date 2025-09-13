@@ -1,55 +1,31 @@
-// // src/app/api/create-payment-intent/route.js
-// import Stripe from 'stripe';
-// import { NextResponse } from 'next/server';
-
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-//   apiVersion: '2022-11-15',
-// });
-
-// export async function POST(req) {
-//   try {
-//     const { amount = 6000, currency = 'aud' } = await req.json(); // amount in cents
-//     // automatic_payment_methods lets Stripe expose wallets (Google Pay) if enabled in Dashboard
-//     const paymentIntent = await stripe.paymentIntents.create({
-//       amount,
-//       currency,
-//       automatic_payment_methods: { enabled: true },
-//       metadata: { integration: 'payment-request-button', product: 'E-bike 6-8h' },
-//     });
-
-//     return NextResponse.json({ clientSecret: paymentIntent.client_secret });
-//   } catch (err) {
-//     console.error('create-payment-intent error', err);
-//     return NextResponse.json({ error: err.message || 'Server error' }, { status: 500 });
-//   }
-// }
-
-// src/app/api/create-payment-intent/route.js
 import Stripe from "stripe";
-import { NextResponse } from "next/server";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2023-10-16",
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
   try {
-    const { amount = 6500, currency = "usd" } = await req.json();
+    const { amount, currency = "inr" } = await req.json();
 
-    if (!amount || amount <= 0) {
-      return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
+    if (!amount) {
+      return new Response(JSON.stringify({ error: "Missing amount" }), {
+        status: 400,
+      });
     }
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency,
-      automatic_payment_methods: { enabled: true }, // Enables Google Pay, Apple Pay, Link
-      metadata: { product: "Pure Kit" },
+      automatic_payment_methods: { enabled: true },
     });
 
-    return NextResponse.json({ clientSecret: paymentIntent.client_secret });
+    return new Response(
+      JSON.stringify({ clientSecret: paymentIntent.client_secret }),
+      { status: 200 }
+    );
   } catch (err) {
-    console.error("create-payment-intent error", err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    console.error("Stripe error:", err);
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+    });
   }
 }

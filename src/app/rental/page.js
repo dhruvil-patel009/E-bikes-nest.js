@@ -213,6 +213,15 @@ useEffect(() => {
   return () => observer.disconnect();
 }, []);
 
+const features = [
+    { icon: "bi-tools", title: "Accessories" },
+    { icon: "bi-geo-alt-fill", title: "GPS System" },
+    { icon: "bi-tools", title: "Maintenance Included" },
+    { icon: "bi-bicycle", title: "Free Test Ride" },
+  ]
+
+  const duplicatedFeatures = [...features, ...features, ...features]
+
 
 
 
@@ -351,60 +360,36 @@ useEffect(() => {
           </p> */}
         </div>
       </section>
-       <section
-      className="w-100 py-2 scroll-animate"
+     <section
+      className="w-100 py-4 position-relative overflow-hidden"
       aria-label="Fleet Features"
       itemScope
       itemType="https://schema.org/Service"
       style={{
-    backgroundColor: "rgb(26, 59, 25)", // solid black background
-    marginTop: "-50px", // overlap with previous section
-    position: "relative",
-    zIndex: 2,
-  }}
+        backgroundColor: "rgb(26, 59, 25)",
+        position: "relative",
+        zIndex: 2,
+      }}
     >
-      <div className="container">
-        <div className="row g-3 text-center text-white">
-
-          {/* Feature 1 */}
-          <article className="col-6 col-md-3" itemProp="feature" itemScope itemType="https://schema.org/PropertyValue">
-            <div className="py-4 px-2">
-              <i className="bi bi-tools fs-1 mb-2" aria-hidden="true"></i>
-              <h4 className="feature-title mb-1" itemProp="name">
-                Accessories
-              </h4>
+      <div className="position-relative">
+        <div className="d-flex animate-scroll text-nowrap">
+          {duplicatedFeatures.map((feature, index) => (
+            <div
+              key={index}
+              className="d-inline-flex align-items-center mx-4 text-white flex-shrink-0"
+              itemProp="feature"
+              itemScope
+              itemType="https://schema.org/PropertyValue"
+            >
+              <i className={`bi ${feature.icon} fs-1 me-3`} aria-hidden="true"></i>
+              <span className="fs-4 fw-semibold" itemProp="name">
+                {feature.title}
+              </span>
+              <span className="mx-3" style={{ color: "rgba(255, 255, 255, 0.5)" }}>
+                •
+              </span>
             </div>
-          </article>
-
-          {/* Feature 2 */}
-          <article className="col-6 col-md-3" itemProp="feature" itemScope itemType="https://schema.org/PropertyValue">
-            <div className="py-4 px-2">
-              <i className="bi bi-geo-alt-fill fs-1 mb-2" aria-hidden="true"></i>
-              <h4 className="feature-title mb-1" itemProp="name">
-                GPS System
-              </h4>
-            </div>
-          </article>
-
-          {/* Feature 3 */}
-          <article className="col-6 col-md-3" itemProp="feature" itemScope itemType="https://schema.org/PropertyValue">
-            <div className="py-4 px-2">
-              <i className="bi bi-tools fs-1 mb-2" aria-hidden="true"></i>
-              <h4 className="feature-title mb-0 fw-bold" itemProp="name">
-                Maintenance Included 
-              </h4>
-            </div>
-          </article>
-
-          {/* Feature 4 */}
-          <article className="col-6 col-md-3" itemProp="feature" itemScope itemType="https://schema.org/PropertyValue">
-            <div className="py-4 px-2">
-              <i className="bi bi-bicycle fs-1 mb-2" aria-hidden="true"></i>
-              <h4 className="feature-title mb-0 fw-bold" itemProp="name">
-                Free Test Ride
-              </h4>
-            </div>
-          </article>
+          ))}
         </div>
       </div>
     </section>
@@ -439,7 +424,7 @@ useEffect(() => {
               itemType="https://schema.org/Service"
             >
               <i className="bi bi-fuel-pump fs-1 mb-3" style={{ color: "#1A3B19" }}></i>
-              <h3 className="fs-5 fw-semibold mb-2" style={{ color: "#1A3B19" }} itemProp="serviceType">
+              <h3 className="fs-5 fw-semibold mb-2" style={{ color: "#1A3B19",fontStyle:'Toronto Subway W01 Regular' }} itemProp="serviceType">
                 Tired Of High Fuel Costs and Unreliable Rides?
               </h3>
               <p className="text-muted small" style={{ fontFamily: "system-ui" }} itemProp="description">
@@ -491,7 +476,7 @@ No fuel. No extra maintenance.
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row mt-4">
           {/* Feature 1 */}
           <div className="col-12 col-md-4">
             <div
@@ -542,7 +527,7 @@ DM us now to book & start riding smarter!             </p>
 
 <section className="bg-white scroll-animate" id="bikes-for-rent">
   <div className="container px-3">
-    <h2 className="fw-bold mb-4" style={{ color: "#1a3b19" }}>
+    <h2 className="fw-bolder mb-4 animated-underline" style={{ color: "#1a3b19",textAlign:'center' }}>
       Bikes For Rent
     </h2>
 
@@ -684,7 +669,7 @@ DM us now to book & start riding smarter!             </p>
   itemType="https://schema.org/OfferCatalog"
 >
   <div className="container">
-    <h2 className="fw-bold mb-4 text-center scroll-animate-text" style={{ color: "#1a3b19",fontFamily: "system-ui" }} itemProp="name">
+    <h2 className="fw-bold mb-4 text-center" style={{ color: "#1a3b19 !important",fontFamily: "system-ui" }} itemProp="name">
       Accessories Provided
     </h2>
     <div className="row g-4">

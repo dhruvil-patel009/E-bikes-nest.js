@@ -30,7 +30,7 @@
 // SEO
 
 import { Geist, Geist_Mono } from "next/font/google";
-import "bootstrap/dist/css/bootstrap.css";
+import 'bootstrap/dist/css/bootstrap.css';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -55,7 +55,6 @@ export const metadata = {
       "Rent premium electric bikes in Melbourne. Perfect for commuters and delivery professionals. Flexible hire durations and great rates.",
     url: "https://www.beyondbikes.com.au/",
     siteName: "Beyond Bikes",
-    manifest: "/manifest.json",
     images: [
       {
         url: "/og-image.jpg", // Replace with your OG image path

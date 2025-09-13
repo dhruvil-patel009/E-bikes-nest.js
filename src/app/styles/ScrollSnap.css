@@ -1,0 +1,14 @@
+.scroll-container {
+  height: 100vh; /* full viewport height */
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory; /* enable snap scrolling */
+  scroll-behavior: smooth; /* smooth effect */
+}
+
+.scroll-section {
+  scroll-snap-align: start;
+  min-height: 100vh; /* each section fills the screen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

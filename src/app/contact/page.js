@@ -330,10 +330,39 @@ import '../styles/Contact.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { usePathname } from 'next/navigation';
+import { useState } from "react";
 
 export default function Contact() {
   const pathname = usePathname();
   const siteUrl = "https://www.beyondbikes.com.au/";
+  const [errors, setErrors] = useState({});
+
+  const validateField = (name, value) => {   // ✅ Added
+  let error = "";
+
+  switch (name) {
+    case "Full Name":
+      if (!value.trim()) error = "Name is required";
+      break;
+    case "Email Address":
+      if (!value.trim()) {
+        error = "Email is required";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        error = "Enter a valid email";
+      }
+      break;
+    case "Phone Number":
+      if (value && !/^\+?\d{7,15}$/.test(value)) {
+        error = "Enter a valid phone number";
+      }
+      break;
+    default:
+      break;
+  }
+
+  setErrors((prev) => ({ ...prev, [name]: error }));
+};
+
 
   return (
     <>
@@ -417,7 +446,11 @@ export default function Contact() {
                       name="Full Name"
                       required
                       aria-required="true"
+                      onChange={(e) => validateField(e.target.name, e.target.value)}
                     />
+                    {errors["Full Name"] && (   // ✅ Added
+  <small className="text-danger ms-3">{errors["Full Name"]}</small>
+)}
                   </div>
                   <div className="col-md-6">
                     <label htmlFor="email" className="visually-hidden">Email Address</label>
@@ -429,21 +462,16 @@ export default function Contact() {
                       name="Email Address"
                       required
                       aria-required="true"
+                      onChange={(e) => validateField(e.target.name, e.target.value)}
                     />
+                    {errors["Email Address"] && (   // ✅ Added
+  <small className="text-danger ms-3">{errors["Email Address"]}</small>
+)}
                   </div>
                 </div>
 
                 <div className="row g-3 mb-3">
-                  <div className="col-md-6">
-                    <label htmlFor="subject" className="visually-hidden">Subject</label>
-                    <input
-                      type="text"
-                      id="subject"
-                      className="form-control form-control-lg bg-light"
-                      placeholder="Your Subject"
-                      name="Subject"
-                    />
-                  </div>
+                  
                   <div className="col-md-6">
                     <label htmlFor="phone" className="visually-hidden">Phone Number</label>
                     <input
@@ -452,6 +480,21 @@ export default function Contact() {
                       className="form-control form-control-lg bg-light"
                       placeholder="Your Phone Number"
                       name="Phone Number"
+                      onChange={(e) => validateField(e.target.name, e.target.value)}
+                    />
+                    {errors["Phone Number"] && (   // ✅ Added
+  <small className="text-danger ms-3">{errors["Phone Number"]}</small>
+)}
+                  </div>
+
+                  <div className="col-md-6">
+                    <label htmlFor="subject" className="visually-hidden">Subject</label>
+                    <input
+                      type="text"
+                      id="subject"
+                      className="form-control form-control-lg bg-light"
+                      placeholder="Your Subject"
+                      name="Subject"
                     />
                   </div>
                 </div>
